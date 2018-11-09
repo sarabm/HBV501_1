@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-    <title>Demo Page</title>
+    <title>DHæ</title>
 </head>
 <body>
 

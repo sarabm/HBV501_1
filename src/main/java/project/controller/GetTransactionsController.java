@@ -3,6 +3,7 @@ package project.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import project.service.TransactionManagementService;
 
 /**
  * Small controller just to show that you can have multiple controllers
@@ -13,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GetTransactionsController {
 
 
-    /* Instance Variables
-    private TransactionManagementService TransactionManagementService;
+    //Instance Variables
+    private project.service.TransactionManagementService transactionManagementService;
 
-    // Dependency Injection
+    //Dependency Injection
     @Autowired
-    public GetTransactionsController(TransactionManagementService TransactionManagementService) {
-        this.TransactionManagementService = TransactionManagementService;
-    }*/
+    public GetTransactionsController(TransactionManagementService transactionManagementService) {
+        this.transactionManagementService = transactionManagementService;
+    }
 
 
     // Notice here that since the class has "/demo", this path is "/demo/page"
