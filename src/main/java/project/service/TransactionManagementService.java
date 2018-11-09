@@ -1,7 +1,6 @@
 package project.service;
 
 import project.persistence.entities.Transaction;
-import project.persistence.entities.Transaction;
 
 import java.util.List;
 
