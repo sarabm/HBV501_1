@@ -3,6 +3,7 @@ package project.service.Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.Account;
+import project.persistence.entities.Transaction;
 import project.persistence.entities.User;
 import project.persistence.repositories.AccountRepository;
 import project.service.AccountManagementService;
@@ -44,6 +45,11 @@ public class AccountManagementServiceImplementation implements AccountManagement
         return repository.findOne(accountId);
     }
 
+  /*
+    @Override
+    public Transaction getTransactions(Account account){
+        return List<Transaction>;
+    } */
 
     /*@Override
     public Account findByUser(User user) {

@@ -30,8 +30,7 @@ public class UserManagementServiceImplementation implements UserManagementServic
 
 
     @Override
-    public User findByUserName(String userName) {
-        return  repository.findByUserName(userName);
+    public User findByUserName(String userName) { return  repository.findByUserName(userName);
     }
 
     @Override
@@ -39,5 +38,18 @@ public class UserManagementServiceImplementation implements UserManagementServic
         return repository.findByUserId(userId);
     }
 
+   /* @Override
+    public Boolean validateUser(String username, String password) {
+        //if false return errormessage
+        return repository.validateUser(username, password);
+    }*/
+
+    @Override
+    public Boolean isLogedIn(Boolean loggedIn){
+        //í módelinu?
+        //if false
+        // validateUse
+        return true;
+    }
 }
 

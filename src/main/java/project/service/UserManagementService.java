@@ -31,6 +31,21 @@ public interface UserManagementService {
      */
      User findByUserId(Long userId);
 
-     //Validate fall?
-     //Boolean validateUser(String?)
+
+    /**
+     * Checks if username and pw is correct
+     * @param username
+     * @param password
+     * @return
+     *
+     Boolean validateUser(String username, String password);
+    */
+
+    /**
+     * Returns true if user is logged in
+     * @param loggedIn
+     * @return
+     */
+     Boolean isLogedIn(Boolean loggedIn);
+
 }
