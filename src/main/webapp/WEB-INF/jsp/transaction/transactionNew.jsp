@@ -22,14 +22,31 @@
 
     <table>
         <tr>
-            <td> ID:</td>
+            <td> Amount:</td>
                 <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-            <td><sf:input path="id" type="Long" placeholder="1"/></td>
+            <td><sf:input path="amount" type="number" placeholder="Enter amount"/></td>
         </tr>
         <tr>
-            <td>Descr:</td>
+            <td>Description:</td>
                 <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-            <td><sf:textarea path="descr" type="text" placeholder="Note text here"/></td>
+            <td><sf:textarea path="descr" type="text" placeholder="Write a description of the transaction"/></td>
+        </tr>
+        <tr>
+            <td>Friends:</td>
+                <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
+            <td>
+                <input type="checkbox" name="friend" id="frida">
+                <label for="frida">Fríða</label>
+                <br>
+                <input type="checkbox" name="friend" id="sara">
+                <label for="sara">Sara</label>
+                <br>
+                <input type="checkbox" name="friend" id="isak">
+                <label for="isak">Ísak</label>
+                <br>
+                <input type="checkbox" name="friend" id="pall">
+                <label for="pall">Páll</label>
+            </td>
         </tr>
     </table>
 
