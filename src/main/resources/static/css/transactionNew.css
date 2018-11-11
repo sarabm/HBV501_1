@@ -1,0 +1,36 @@
+div label input {
+    margin-right:100px;
+}
+body {
+    font-family:sans-serif;
+}
+
+.friendlist {
+    margin:4px;
+    background-color:#EFEFEF;
+    overflow:auto;
+    float:left;
+    display: flex;
+    flex-direction: column;
+}
+
+.friendlist label {
+    float:left;
+    width:4.0em;
+}
+
+.friendlist label span {
+    text-align:center;
+    padding:3px 0px;
+    display:block;
+}
+
+.friendlist label input {
+    position:absolute;
+    top:-20px;
+}
+
+.friendlist input:checked + span {
+    background-color: #464646;
+    color:#fff;
+}

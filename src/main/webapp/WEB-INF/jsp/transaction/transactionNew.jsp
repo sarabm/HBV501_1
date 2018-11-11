@@ -9,11 +9,11 @@
 
 <head>
     <title>Lil Bill</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/transactionNew.css"/>"/>
 </head>
 <body>
 
-<h1>New Transaction - page</h1>
-<p> --- haha nice ---- </p>
+<h1>Create a new transaction</h1>
 
 <%--Note that the `commandName` given here HAS TO MATCH the name of the attribute--%>
 <%--that is added to the model that is passed to the view.--%>
@@ -34,18 +34,31 @@
         <tr>
             <td>Friends:</td>
                 <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-            <td>
-                <input type="checkbox" name="friend" id="frida">
-                <label for="frida">Fríða</label>
-                <br>
-                <input type="checkbox" name="friend" id="sara">
-                <label for="sara">Sara</label>
-                <br>
-                <input type="checkbox" name="friend" id="isak">
-                <label for="isak">Ísak</label>
-                <br>
-                <input type="checkbox" name="friend" id="pall">
-                <label for="pall">Páll</label>
+            <td class="friendlist">
+                <label for="frida">
+                    <input type="checkbox" name="friend" id="frida">
+                    <span>
+                         Fríða
+                    </span>
+                </label>
+                <label for="sara">
+                    <input type="checkbox" name="friend" id="sara">
+                    <span>
+                         Sara
+                    </span>
+                </label>
+                <label for="isak">
+                    <input type="checkbox" name="friend" id="isak">
+                    <span>
+                         Ísak
+                    </span>
+                </label>
+                <label for="pall">
+                    <input type="checkbox" name="friend" id="pall">
+                    <span>
+                         Páll
+                    </span>
+                </label>
             </td>
         </tr>
     </table>
@@ -53,6 +66,8 @@
     <input type="submit" VALUE="Save"/>
 
 </sf:form>
+
+<a href="/../..">Back to home page</a>
 
 </body>
 
