@@ -27,7 +27,7 @@ public class LoginController {
     // Notice here that since the class has "/demo", this path is "/demo/page"
     @RequestMapping("/login")
     public String demoPage(){
-        return "demo/demo"; // this returns a .jsp file with the path /webapp/WEB-INF/jsp/demo/demo.jsp
+        return "demo/demo"; // this returns a .jsp file with the path /webapp/WEB-INF/jsp/demo/transactionNew.jsp
     }
 
 
