@@ -2,6 +2,7 @@ package project.persistence.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import project.persistence.entities.Account;
 import project.persistence.entities.Transaction;
 
 import java.util.List;
@@ -15,11 +16,15 @@ import java.util.List;
  */
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
+    //insert
     Transaction save(Transaction Transaction);
 
+    //remove
     void delete(Transaction Transaction);
 
     List<Transaction> findAll();
+
+    //List<Transaction> findAllTransactions(Account account);
 
 
     @Query(value = "SELECT p FROM Transaction p WHERE p.id = ?1")

@@ -2,6 +2,7 @@ package project.service;
 
 import project.persistence.entities.Account;
 import project.persistence.entities.Account;
+import project.persistence.entities.Transaction;
 import project.persistence.entities.User;
 
 import java.util.List;
@@ -40,6 +41,14 @@ public interface AccountManagementService {
      * @return
      */
     //Account findByUser(User user);
+
+    /**
+     * Finds all transactions in Account
+     * @param account
+     * @return
+     */
+    //Transaction getTransactions(Account account);
+
 
     /**
      * Find by userId {@link Account}
