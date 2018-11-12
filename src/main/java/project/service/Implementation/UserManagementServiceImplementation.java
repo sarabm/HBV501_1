@@ -6,6 +6,8 @@ import project.persistence.entities.User;
 import project.persistence.repositories.UserRepository;
 import project.service.UserManagementService;
 
+import java.util.List;
+
 @Service
 public class UserManagementServiceImplementation implements UserManagementService {
 
@@ -50,6 +52,12 @@ public class UserManagementServiceImplementation implements UserManagementServic
         //if false
         // validateUse
         return true;
+    }
+
+    @Override
+    public List<User> getFriends(User user){
+        // Returns lit of user friens
+        return user.getFriendlist();
     }
 }
 

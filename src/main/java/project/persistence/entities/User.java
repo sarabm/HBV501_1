@@ -1,5 +1,7 @@
 package project.persistence.entities;
 import javax.persistence.*;
+import java.util.List;
+
 /**
  * The class for the User Note itself.
  * The system generates a table schema based on this class for this entity.
@@ -17,7 +19,9 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    //List <User>
+    @Embedded
+    private List<User> friendlist;
+
     // Notice the empty constructor, because we need to be able to create an empty User to add
     // to our model so we can use it with our form
     public User() {
@@ -65,7 +69,9 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-     /* This is for easier debug.
+    public List<User> getFriendlist() {return friendlist;}
+    public void setFriendlist(List<User> friendlist) {this.friendlist = friendlist;}
+    /* This is for easier debug.
     @Override
     public String toString() {
         return String.format(

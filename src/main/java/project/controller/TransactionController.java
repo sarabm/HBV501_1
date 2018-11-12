@@ -3,10 +3,16 @@ package project.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.PostitNote;
 import project.persistence.entities.Transaction;
+import project.persistence.entities.User;
 import project.service.TransactionManagementService;
+import project.service.UserManagementService;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Small controller just to show that you can have multiple controllers
@@ -18,6 +24,7 @@ public class TransactionController {
 
     // Instance Variables
     private TransactionManagementService transactionManagementService;
+    private UserManagementService userManagementService;
 
     // Dependency Injection
     @Autowired
@@ -34,10 +41,22 @@ public class TransactionController {
     // Method that returns the correct view for the URL /transaction/new
     // This handles the GET request for this URL
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String transactionNewGet(Model model){
+    public String transactionNewGet(Model model /*ModelMap map*/){
+        /*
+        User sakki = new User("sakki", "Ísak", "Kolbeins", "iak5@hi.is", "lykilord");
+        User frodo = new User("frodo", "Fríða", "Dóttir", "frodo@hi.is", "lykilord5");
+        User snara = new User("snara", "Sara", "Snara", "nice@hi.is", "SuperSecret");
+
+        List<User> friendlist = Arrays.asList(new User[]{sakki, frodo,snara});
+
+        sakki.setFriendlist(friendlist); */
 
         // Add new transaction to the model
         model.addAttribute("transaction", new Transaction());
+
+        // Add user friendslist to the model
+        // map.addAttribute("friendlist", friendlist);
+
 
         // Return the view
         return "transaction/transactionNew";
@@ -49,6 +68,12 @@ public class TransactionController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String transactionNewPost(@ModelAttribute("transaction") Transaction transaction,
                                      Model model){
+
+            /*@ModelAttribute("transaction") Transaction transaction,
+                                     @ModelAttribute("friendlist") List<User> friendlist,ModelMap map){*/
+
+
+
 
         // Save transaction from the form
         transactionManagementService.save(transaction);

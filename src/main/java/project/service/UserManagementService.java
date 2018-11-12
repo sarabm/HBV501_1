@@ -2,6 +2,8 @@ package project.service;
 
 import project.persistence.entities.User;
 
+import java.util.List;
+
 public interface UserManagementService {
 
     /**
@@ -30,6 +32,13 @@ public interface UserManagementService {
      * @return
      */
      User findByUserId(Long userId);
+
+    /**
+     * Returns list of frend users
+     * @param user
+     * @return
+     */
+     List<User> getFriends(User user);
 
 
     /**

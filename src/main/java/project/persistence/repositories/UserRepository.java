@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import project.persistence.entities.User;
 
+import java.util.List;
+
 
 /**
  * By extending the {@link JpaRepository} we have access to powerful methods.
@@ -25,7 +27,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT p FROM User p WHERE p.id = ?1")
     User findByUserId(Long id);
 
-   // Boolean validateUser(String username, String password);
+
+    // Boolean validateUser(String username, String password);
 
 
     User findByUserName(String userName);
