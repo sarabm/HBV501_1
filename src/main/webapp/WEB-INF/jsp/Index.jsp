@@ -3,19 +3,23 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <html lang="en">
 
+
     <head>
-        <title>Project Title</title>
+        <title>Lil Bill</title>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/index.css"/>"/>
     </head>
     <body>
 
-    <h1>HBV501G Project Spring Boot Skeleton</h1>
-    <p>This skeleton of a Spring Boot Web project was made to help groups get started on their projects without to much hassle.</p>
+    <h1>Lil Bill</h1>
+    <p>Hi there!</p>
+    <p>Welcome to Lil Bill, your go-to transaction management service. Here, the idea is that you can keep track of how much you owe your friends and how much they owe you.</p>
+    <p>So convenient!</p>
+    <p>But please bear with us as functionality is not completely here yet. Happy logging :)</p>
 
-    <ul>
-        <li><a href="/postit">Click here for Persistence Layer Demo</a></li>
-    </ul>
+     <a href="/transaction/new">Click here to create a new transaction</a>
     </body>
-    <footer>Class HBV501G, University of Iceland</footer>
+    <footer></footer>
 </html>

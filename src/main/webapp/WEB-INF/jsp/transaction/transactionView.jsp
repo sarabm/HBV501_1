@@ -11,11 +11,14 @@
 </head>
 <body>
 
-<h1>View Transaction - page</h1>
-<p> --- super nice ---- </p>
-<h2>ID : ${transaction.id} </h2>
+<h1>Transaction submitted</h1>
+<h2>Amount : ${transaction.amount} </h2>
 <h2>Description : ${transaction.descr} </h2>
 
+
+<a href="/../..">Back to home page</a>
 </body>
+
+
 
 </html>

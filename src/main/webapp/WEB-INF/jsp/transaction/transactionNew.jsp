@@ -9,11 +9,11 @@
 
 <head>
     <title>Lil Bill</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/transactionNew.css"/>"/>
 </head>
 <body>
 
-<h1>New Transaction - page</h1>
-<p> --- haha nice ---- </p>
+<h1>Create a new transaction</h1>
 
 <%--Note that the `commandName` given here HAS TO MATCH the name of the attribute--%>
 <%--that is added to the model that is passed to the view.--%>
@@ -22,20 +22,52 @@
 
     <table>
         <tr>
-            <td> ID:</td>
+            <td> Amount:</td>
                 <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-            <td><sf:input path="id" type="Long" placeholder="1"/></td>
+            <td><sf:input path="amount" type="number" placeholder="Enter amount"/></td>
         </tr>
         <tr>
-            <td>Descr:</td>
+            <td>Description:</td>
                 <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-            <td><sf:textarea path="descr" type="text" placeholder="Note text here"/></td>
+            <td><sf:textarea path="descr" type="text" placeholder="Write a description of the transaction"/></td>
+        </tr>
+        <tr>
+            <td>Friends:</td>
+                <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
+            <td class="friendlist">
+                <label for="frida">
+                    <input type="checkbox" name="friend" id="frida">
+                    <span>
+                         Fríða
+                    </span>
+                </label>
+                <label for="sara">
+                    <input type="checkbox" name="friend" id="sara">
+                    <span>
+                         Sara
+                    </span>
+                </label>
+                <label for="isak">
+                    <input type="checkbox" name="friend" id="isak">
+                    <span>
+                         Ísak
+                    </span>
+                </label>
+                <label for="pall">
+                    <input type="checkbox" name="friend" id="pall">
+                    <span>
+                         Páll
+                    </span>
+                </label>
+            </td>
         </tr>
     </table>
 
     <input type="submit" VALUE="Save"/>
 
 </sf:form>
+
+<a href="/../..">Back to home page</a>
 
 </body>
 
