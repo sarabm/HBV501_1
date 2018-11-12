@@ -2,6 +2,8 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import project.service.TransactionManagementService;
 
@@ -10,7 +12,6 @@ import project.service.TransactionManagementService;
  * in your project
  */
 @Controller
-@RequestMapping("/demo") // Notice here that the Request Mapping is set at the Class level
 public class GetTransactionsController {
 
 
@@ -26,8 +27,11 @@ public class GetTransactionsController {
 
     // Notice here that since the class has "/demo", this path is "/demo/page"
     @RequestMapping("/transactions")
-    public String demoPage(){
-        return "demo/demo"; // this returns a .jsp file with the path /webapp/WEB-INF/jsp/demo/transactionNew.jsp
+    public String allTransactions(Model model){
+        model.addAttribute("transactions", transactionManagementService.findAll());
+
+        return "transaction/transactionList";
+
     }
 
 

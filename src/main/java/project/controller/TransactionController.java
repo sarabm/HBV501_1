@@ -34,8 +34,11 @@ public class TransactionController {
 
     // Method that returns the correct view for the URL /transaction
     @RequestMapping(value = "")
-    public String demoPage(){
-        return "demo/demo"; // this returns a .jsp file with the path /webapp/WEB-INF/jsp/demo/transactionNew.jsp
+    public String allTransactions(Model model){
+        model.addAttribute("transactions", transactionManagementService.findAll());
+
+        return "transaction/transactionList";
+
     }
 
     // Method that returns the correct view for the URL /transaction/new
@@ -97,20 +100,12 @@ public class TransactionController {
     // This method finds all Postit Notes posted by someone with the requested {name}
     // and returns a list with all those Postit Notes.
 
-    @RequestMapping(value = "/view/{transactionID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{transactionID}", method = RequestMethod.GET)
     public String transactionView(@PathVariable String transactionID,
                                   Model model)
             /*@RequestParam(value="transaction", required=false, defaultValue= "default") String transaction,
                                   Model model)*/{
 
-        /*// Get all Postit Notes with this name and add them to the model
-        model.addAttribute("postitNotes", postitNoteService.findByName(name));
-
-
-        // Add a new Postit Note to the model for the form
-        // If you look at the form in PostitNotes.jsp, you can see that we
-        // reference this attribute there by the name `postitNote`.
-        model.addAttribute("postitNote", new PostitNote());
 
 
         // Return the view */
