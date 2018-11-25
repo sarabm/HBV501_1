@@ -26,7 +26,7 @@ public class UserInfoController {
 
     // Notice here that since the class has "/demo", this path is "/demo/page"
     @RequestMapping("/UserInfo")
-    public String demoPage(){
+    public String demo(){
         return "demo/demo"; // this returns a .jsp file with the path /webapp/WEB-INF/jsp/demo/transactionNew.jsp
     }
 

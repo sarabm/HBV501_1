@@ -11,7 +11,7 @@ import project.persistence.entities.User;
 import project.service.TransactionManagementService;
 import project.service.UserManagementService;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,14 +45,32 @@ public class TransactionController {
     // This handles the GET request for this URL
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String transactionNewGet(Model model /*ModelMap map*/){
-        /*
-        User sakki = new User("sakki", "Ísak", "Kolbeins", "iak5@hi.is", "lykilord");
+
+                /*User sakki = new User("sakki", "Ísak", "Kolbeins", "iak5@hi.is", "lykilord");
         User frodo = new User("frodo", "Fríða", "Dóttir", "frodo@hi.is", "lykilord5");
         User snara = new User("snara", "Sara", "Snara", "nice@hi.is", "SuperSecret");
 
-        List<User> friendlist = Arrays.asList(new User[]{sakki, frodo,snara});
+        List<User> friendlistSakki = new ArrayList<User>();
+        friendlistSakki.add(frodo);
+        friendlistSakki.add(snara);
 
-        sakki.setFriendlist(friendlist); */
+        List<User> friendlistFrodo = new ArrayList<User>();
+        friendlistFrodo.add(sakki);
+        friendlistFrodo.add(snara);
+
+        List<User> friendlistSnara = new ArrayList<User>();
+        friendlistSnara.add(frodo);
+        friendlistSnara.add(sakki);
+
+        sakki.setFriendlist(friendlistSakki);
+        frodo.setFriendlist(friendlistFrodo);
+        snara.setFriendlist(friendlistSnara);
+
+        System.out.println(sakki);
+
+        userManagementService.save(sakki);
+        userManagementService.save(frodo);
+        userManagementService.save(snara);*/
 
         // Add new transaction to the model
         model.addAttribute("transaction", new Transaction());
@@ -72,10 +90,8 @@ public class TransactionController {
     public String transactionNewPost(@ModelAttribute("transaction") Transaction transaction,
                                      Model model){
 
-            /*@ModelAttribute("transaction") Transaction transaction,
+        /*@ModelAttribute("transaction") Transaction transaction,
                                      @ModelAttribute("friendlist") List<User> friendlist,ModelMap map){*/
-
-
 
 
         // Save transaction from the form
