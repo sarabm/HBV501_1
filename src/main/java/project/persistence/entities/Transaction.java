@@ -9,27 +9,52 @@ import java.util.Date;
 @Entity
 @Table(name = "transaction") // If you want to specify a table name, you can do so here
 public class Transaction {
-    // Declare that this attribute is the id
+    // Declare that this attribute is the id and autogenerate
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "transactionId", updatable = false, nullable = false)
     private Long id;
+
+    /*@Id
+    @Column(name = "splitId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
+    //Composite-id class must implement Serializable
     private Long splitId;
+
     private Boolean confirmed;
     private Boolean ignored;
-    // private Account account;
+
+    //JPA relationship to account
+    @ManyToOne
+    private Account account;
+
+
     private Double amount;
     private String descr;
-    private Date date; //autogenerata
 
+    //autocreate date
+    private Date date = new Date();
+
+    /**
+     * Empty constructor
+     */
     public Transaction() {
     }
-    public Transaction(Long splitId, Boolean confirmed, Boolean ignored, Double amount, String descr) {
-        this.splitId = splitId;
-        this.confirmed = confirmed;
-        this.ignored = ignored;
+
+    /**
+     * default  constructor
+     * @param account
+     * @param amounte
+     */
+    public Transaction(Account account, Double amounte) {
+        this.account = account;
         this.amount = amount;
-        this.descr = descr;
     }
+
+    /**
+     * Getters n settesr
+     * @return
+     */
     public Long getId() {
         return id;
     }
@@ -66,10 +91,8 @@ public class Transaction {
     public void setDescr(String descr) {
         this.descr = descr;
     }
-    public Date getDate() {
-        return date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
+
+    public Account getAccount() {
+        return account;
     }
 }

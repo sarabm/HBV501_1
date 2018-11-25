@@ -11,12 +11,47 @@ import java.util.List;
 public class Account  {
     // Declare that this attribute is the id
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "accountId", updatable = false, nullable = false)
     private Long id;
-    //private List<Transaction> transactionList;
-    //private User[] users;
+
+    @OneToMany
+    private List<Transaction> transactionList;
+    //@JoinColumn(name = "transactionId")
+
+
+    private User[] users;
     private Double netBalance;
 
 
+    public Account() {
+    }
 
+    public Account(User[] users) {
+        this.users = users;
+    }
+
+    public List<Transaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
+    }
+
+    public User[] getUsers() {
+        return users;
+    }
+
+    public void setUsers(User[] users) {
+        this.users = users;
+    }
+
+    public Double getNetBalance() {
+        return netBalance;
+    }
+
+    public void setNetBalance(Double netBalance) {
+        this.netBalance = netBalance;
+    }
 }

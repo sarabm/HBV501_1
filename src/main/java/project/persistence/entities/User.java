@@ -8,19 +8,23 @@ import java.util.List;
  * Be sure to annotate any entities you have with the @Entity annotation.
  */
 @Entity
-@Table(name = "user") // If you want to specify a table name, you can do so here
+@Table(name="`User`")
 public class User {
     // Declare that this attribute is the id
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "userId", updatable = false, nullable = false)
     private Long id;
+
     private String userName;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
+
     @Embedded
     private List<User> friendlist;
+
 
     // Notice the empty constructor, because we need to be able to create an empty User to add
     // to our model so we can use it with our form
@@ -33,49 +37,53 @@ public class User {
         this.email = email;
         this.password = password;
     }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+
+
     public String getUserName() {
         return userName;
     }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
-    public List<User> getFriendlist() {return friendlist;}
-    public void setFriendlist(List<User> friendlist) {this.friendlist = friendlist;}
-    /* This is for easier debug.
-    @Override
-    public String toString() {
-        return String.format(
-                "Postit Note[name=%s, note=%s]",
-                name,note);
-    }*/
+
+    public List<User> getFriendlist() {
+        return friendlist;
+    }
+
+    public void setFriendlist(List<User> friendlist) {
+        this.friendlist = friendlist;
+    }
 }

@@ -28,8 +28,9 @@ public class TransactionController {
 
     // Dependency Injection
     @Autowired
-    public TransactionController(TransactionManagementService transactionManagementService) {
+    public TransactionController(TransactionManagementService transactionManagementService, UserManagementService userManagementService) {
         this.transactionManagementService = transactionManagementService;
+        this.userManagementService = userManagementService;
     }
 
     // Method that returns the correct view for the URL /transaction
@@ -46,7 +47,7 @@ public class TransactionController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String transactionNewGet(Model model /*ModelMap map*/){
 
-                /*User sakki = new User("sakki", "Ísak", "Kolbeins", "iak5@hi.is", "lykilord");
+        User sakki = new User("sakki", "Ísak", "Kolbeins", "iak5@hi.is", "lykilord");
         User frodo = new User("frodo", "Fríða", "Dóttir", "frodo@hi.is", "lykilord5");
         User snara = new User("snara", "Sara", "Snara", "nice@hi.is", "SuperSecret");
 
@@ -54,29 +55,33 @@ public class TransactionController {
         friendlistSakki.add(frodo);
         friendlistSakki.add(snara);
 
+        /*
         List<User> friendlistFrodo = new ArrayList<User>();
         friendlistFrodo.add(sakki);
         friendlistFrodo.add(snara);
 
         List<User> friendlistSnara = new ArrayList<User>();
         friendlistSnara.add(frodo);
-        friendlistSnara.add(sakki);
+        friendlistSnara.add(sakki);*/
 
         sakki.setFriendlist(friendlistSakki);
-        frodo.setFriendlist(friendlistFrodo);
-        snara.setFriendlist(friendlistSnara);
+       //frodo.setFriendlist(friendlistFrodo);
+        //snara.setFriendlist(friendlistSnara);
 
-        System.out.println(sakki);
+        //System.out.println(sakki);
+
+
+        //User sakki = new User();
 
         userManagementService.save(sakki);
-        userManagementService.save(frodo);
-        userManagementService.save(snara);*/
+        //userManagementService.save(frodo);
+        //userManagementService.save(snara);
 
         // Add new transaction to the model
         model.addAttribute("transaction", new Transaction());
 
         // Add user friendslist to the model
-        // map.addAttribute("friendlist", friendlist);
+        //model.addAttribute("friendlist", friendlistFrodo);
 
 
         // Return the view
