@@ -44,9 +44,9 @@ public class Transaction {
     /**
      * default  constructor
      * @param account
-     * @param amounte
+     * @param amount
      */
-    public Transaction(Account account, Double amounte) {
+    public Transaction(Account account, Double amount) {
         this.account = account;
         this.amount = amount;
     }
