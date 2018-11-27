@@ -10,7 +10,6 @@ import project.service.UserManagementService;
  * in your project
  */
 @Controller
-@RequestMapping("/login") // Notice here that the Request Mapping is set at the Class level
 public class LoginController {
 
 
@@ -27,7 +26,7 @@ public class LoginController {
     // Notice here that since the class has "/demo", this path is "/demo/page"
     @RequestMapping("/login")
     public String demoPage(){
-        return "demo/demo"; // this returns a .jsp file with the path /webapp/WEB-INF/jsp/demo/transactionNew.jsp
+        return "/login"; // this returns a .jsp file with the path /webapp/WEB-INF/jsp/demo/transactionNew.jsp
     }
 
 

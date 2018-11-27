@@ -5,6 +5,8 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<jsp:include page="../navBar.jsp" />
+
 <html lang="en">
 
 <head>
