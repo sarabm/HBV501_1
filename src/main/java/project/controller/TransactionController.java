@@ -34,7 +34,7 @@ public class TransactionController {
     }
 
     // Method that returns the correct view for the URL /transaction
-    @RequestMapping()
+    @RequestMapping("/all")
     public String allTransactions(Model model){
         model.addAttribute("transactions", transactionManagementService.findAll());
 
@@ -44,7 +44,7 @@ public class TransactionController {
 
     // Method that returns the correct view for the URL /transaction/new
     // This handles the GET request for this URL
-    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String transactionNewGet(Model model /*ModelMap map*/){
 
         User sakki = new User("sakki", "Ísak", "Kolbeins", "iak5@hi.is", "lykilord");
@@ -91,7 +91,7 @@ public class TransactionController {
     // Method that receives the POST request on the URL //transaction/new
     // and receives the ModelAttribute("transaction")
     // This handles the GET request for this URL
-    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public String transactionNewPost(@ModelAttribute("transaction") Transaction transaction,
                                      Model model){
 

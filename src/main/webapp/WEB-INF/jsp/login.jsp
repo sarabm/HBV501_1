@@ -14,6 +14,10 @@
     </head>
     <body>
 
+    <c:if test="${not empty msg}">
+        <p>${msg}</p>
+    </c:if>
+
 
     <h1>Lil Bill</h1>
     <p>Hi there!</p>
@@ -25,6 +29,9 @@
     <br>
 
     <div class="loginForm">
+        <c:if test="${not empty errorMsg}">
+            <p>${errorMsg}</p>
+        </c:if>
 
         <form method="POST" action="/login" class="form-signin">
             <h2 class="form-heading">Log in</h2>

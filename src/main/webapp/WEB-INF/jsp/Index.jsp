@@ -22,9 +22,9 @@
     <p>So convenient!</p>
     <p>But please bear with us as functionality is not completely here yet. Happy logging :)</p>
 
-    <a href="/transaction/new">Click here to create a new transaction</a>
+    <a href="/transaction">Click here to create a new transaction</a>
     <br>
-    <a href="/transaction">Click here to view all transactions</a>
+    <a href="/transaction/all">Click here to view all transactions</a>
 
     </body>
     <footer></footer>

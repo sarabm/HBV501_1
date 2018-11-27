@@ -5,17 +5,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-<div style="border: 1px solid #ccc; padding: 5px; margin-bottom: 20px;">
+<div>
 
     <a href="/">Home</a> |
-    <a href="/transaction">All transactions</a> |
-    <a href="/transaction/new">New transaction</a> |
-    <u><h4 style="color: blue;">
-    <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-    </h4></u>
-
-    <form id="logoutForm" method="POST" action="/logout">
-    </form>
+    <a href="/transaction/all">All transactions</a> |
+    <a href="/transaction">New transaction</a> |
+    <a onclick="document.forms['logoutForm'].submit()">Logout</a> |
+    <form id="logoutForm" method="POST" action="/logout"/>
 
 
 </div>

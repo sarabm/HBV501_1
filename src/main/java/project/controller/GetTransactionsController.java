@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import project.service.TransactionManagementService;
 
 /**
+ *  ------------------------- ER redundant ------------------------------
  * Small controller just to show that you can have multiple controllers
  * in your project
  */
