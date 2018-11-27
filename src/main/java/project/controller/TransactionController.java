@@ -34,7 +34,7 @@ public class TransactionController {
     }
 
     // Method that returns the correct view for the URL /transaction
-    @RequestMapping(value = "")
+    @RequestMapping()
     public String allTransactions(Model model){
         model.addAttribute("transactions", transactionManagementService.findAll());
 

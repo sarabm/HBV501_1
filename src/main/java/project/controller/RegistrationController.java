@@ -2,7 +2,9 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import project.service.UserManagementService;
 
 /**
@@ -10,7 +12,6 @@ import project.service.UserManagementService;
  * in your project
  */
 @Controller
-@RequestMapping("/registration") // Notice here that the Request Mapping is set at the Class level
 public class RegistrationController {
 
 
@@ -23,11 +24,14 @@ public class RegistrationController {
         this.UserManagementService = UserManagementService;
     }
 
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String newRegistration(Model model){
+        return "registration";
+    }
 
-    // Notice here that since the class has "/demo", this path is "/demo/page"
-    @RequestMapping("/registration")
-    public String demoPage(){
-        return "demo/demo"; // this returns a .jsp file with the path /webapp/WEB-INF/jsp/demo/transactionNew.jsp
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String saveRegistration(Model model){
+        return "registration";
     }
 
 

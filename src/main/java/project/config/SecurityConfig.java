@@ -64,13 +64,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
-        http.authorizeRequests().antMatchers("/").permitAll()
-                .antMatchers("/transaction/**").hasAnyRole("USER", "ADMIN")
+        http.authorizeRequests().antMatchers("/login").permitAll()
+                .antMatchers("/registration").permitAll()
+                .antMatchers("/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/transaction", true)
+                .loginPage("/login")
                 .permitAll()
+                .defaultSuccessUrl("/", true)
                 .and()
                 .logout().permitAll()
 

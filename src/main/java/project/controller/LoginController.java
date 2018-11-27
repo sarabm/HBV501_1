@@ -23,6 +23,7 @@ public class LoginController {
     }
 
 
+
     // Notice here that since the class has "/demo", this path is "/demo/page"
     @RequestMapping("/login")
     public String demoPage(){
