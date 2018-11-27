@@ -33,7 +33,13 @@ public class UserManagementServiceImplementation implements UserManagementServic
 
 
     @Override
-    public User findByUserName(String userName) { return  repository.findByUserName(userName);
+    public User findByUserName(String userName) {
+        User isak = new User();
+        isak.setUserName("Sakkattack");
+        isak.setEmail("mymail@mail.com");
+        isak.setFirstName("Ísak");
+        isak.setLastName("Kolbeins");
+        return isak ; //repository.findByUserName(userName);
     }
 
     @Override

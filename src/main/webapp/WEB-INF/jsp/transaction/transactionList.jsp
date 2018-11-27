@@ -13,7 +13,11 @@
 </head>
 <body>
 
-<h1>All Transactions</h1>
+<h1>All Transactions </h1>
+
+<h3> From ${userName}'s account: </h3>
+<p> Email : ${currUser.email} </p>
+
 <br>
 <p>___________________________________________</p>
 

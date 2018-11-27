@@ -24,7 +24,7 @@ public interface UserManagementService {
      * @param userName
      * @return
      */
-    User findByUserName(String userName );
+    User findByUserName(String userName);
 
     /**
      * Find User by User Id {@link User}

@@ -1,15 +1,17 @@
 package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.PostitNote;
 import project.persistence.entities.Transaction;
 import project.persistence.entities.User;
 import project.service.TransactionManagementService;
 import project.service.UserManagementService;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +27,33 @@ public class TransactionController {
     // Instance Variables
     private TransactionManagementService transactionManagementService;
     private UserManagementService userManagementService;
+    private User currUser;
+
+    // Getting current user  ---
+    private User getUser() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userManagementService.findByUserName(userDetails.getUsername());
+    }
 
     // Dependency Injection
     @Autowired
     public TransactionController(TransactionManagementService transactionManagementService, UserManagementService userManagementService) {
         this.transactionManagementService = transactionManagementService;
         this.userManagementService = userManagementService;
+        //this.securityContextHolder = securityContextHolder;
+        //this.userDetails = (UserDetails) securityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
     // Method that returns the correct view for the URL /transaction
     @RequestMapping("/all")
     public String allTransactions(Model model){
-        model.addAttribute("transactions", transactionManagementService.findAll());
+        // To use current user,,,,, call this
+        this.currUser = getUser();
 
+        model.addAttribute("userName", currUser.getUserName());
+        model.addAttribute("firstName", currUser.getFirstName());
+        model.addAttribute("currUser", currUser);
+        model.addAttribute("transactions", transactionManagementService.findAll());
         return "transaction/transactionList";
 
     }
