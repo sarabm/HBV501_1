@@ -50,7 +50,7 @@ public class AccountsController {
 
         // model.addAttribute("friendUserName", "");
         model.addAttribute("currUser", currUser);
-        model.addAttribute("accounts", accountManagementService.findByUser(currUser));
+        model.addAttribute("accounts", accountManagementService.findByUsername(currUser.getUsername()));
         return "/account/accountList";
     }
 
@@ -86,7 +86,7 @@ public class AccountsController {
         }
 
         model.addAttribute("currUser", currUser);
-        model.addAttribute("accounts", accountManagementService.findByUser(currUser));
+        model.addAttribute("accounts", accountManagementService.findByUsername(currUser.getUsername()));
         return "/account/accountList";
     }
 
