@@ -36,10 +36,10 @@
         <tr>
             <td>Friends:</td>
             <td class="friendlist">
-                <c:forEach var="friend" items="friendlist">
-                    <label for="${friend.username}">
-                        <input type="checkbox" name="friend" id="${friend.username}">
-                        <span>${friend.username}</span>
+-                <c:forEach var="user" items="${friendlist}">
+                    <label for="${user.username}">
+                        <input type="checkbox" name="selected" id="${user.username}">
+                        <span>${user.username}</span>
                     </label>
                 </c:forEach>
             </td>

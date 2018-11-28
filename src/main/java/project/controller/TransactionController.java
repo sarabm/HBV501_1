@@ -96,7 +96,11 @@ public class TransactionController {
 
         // Add new transaction to the model
         model.addAttribute("transaction", new Transaction());
-        model.addAttribute("friendlist", currUser.getFriendlist());
+
+        System.out.println("hér" + currUser.getFriendlist());
+
+        List<User> friendlist = currUser.getFriendlist(); // Obtain all products.
+        model.addAttribute("friendlist", friendlist);
 
         // Add user friendslist to the model
         //model.addAttribute("friendlist", friendlistFrodo);

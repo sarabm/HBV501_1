@@ -39,7 +39,7 @@ public class User {
     }
 
     @ManyToMany
-    protected List<User> friendlist = null;
+    private List<User> friendlist = null;
 
 
 
