@@ -25,13 +25,13 @@ public class Transaction {
     private Boolean ignored;
 
     //JPA relationship to account
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Account account;
 
     private Double amount;
     private String descr;
 
-    //autocreate date
+    @Temporal(TemporalType.DATE)
     private Date date = new Date();
 
     /**
