@@ -90,6 +90,8 @@ public class UserManagementServiceImplementation implements UserManagementServic
         }
         friendFriends.add(user);
         friend.setFriendlist(friendFriends);
+        repository.save(user);
+        repository.save(friend);
     }
 }
 

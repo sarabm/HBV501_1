@@ -1,5 +1,6 @@
 package project.persistence.entities;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,9 +23,24 @@ public class User {
     private String email;
     private String password;
     private String role;
+    @ManyToMany
+    protected List<User> friendlist = null;
 
-    @Embedded
-    private List<User> friendlist;
+
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}
+    )
+    @JoinTable(
+            name="USER_FRIEND",
+            joinColumns=@JoinColumn(name="USER_ID"),
+            inverseJoinColumns=@JoinColumn(name="FRIEND_ID")
+    )
+    public List getFriendlist() {
+        return friendlist;
+    }
+    /*
+    @ManyToMany
+    protected List<User> friendlist = null;*/
+
 
 
     // Notice the empty constructor, because we need to be able to create an empty User to add
@@ -88,9 +104,6 @@ public class User {
         this.role = role;
     }
 
-    public List<User> getFriendlist() {
-        return friendlist;
-    }
 
     public void setFriendlist(List<User> friendlist) {
         this.friendlist = friendlist;

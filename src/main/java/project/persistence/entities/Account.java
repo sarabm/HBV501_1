@@ -15,19 +15,12 @@ public class Account  {
     @Column(name = "accountId", updatable = false, nullable = false)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     private List<Transaction> transactionList;
     //@JoinColumn(name = "transactionId")
 
     private String user1;
     private String user2;
-
-
-    /*
-    @Embedded
-
-    private User[] users;*/
-
     private Double netBalance;
 
 
