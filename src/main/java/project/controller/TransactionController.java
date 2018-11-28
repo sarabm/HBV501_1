@@ -32,7 +32,7 @@ public class TransactionController {
     // Getting current user  ---
     private User getUser() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return userManagementService.findByUserName(userDetails.getUsername());
+        return userManagementService.findByUsername(userDetails.getUsername());
     }
 
     // Dependency Injection
@@ -50,8 +50,8 @@ public class TransactionController {
         // To use current user,,,,, call this
         this.currUser = getUser();
 
-        model.addAttribute("userName", currUser.getUserName());
-        model.addAttribute("firstName", currUser.getFirstName());
+        model.addAttribute("userName", currUser.getUsername());
+        model.addAttribute("firstName", currUser.getFirstname());
         model.addAttribute("currUser", currUser);
         model.addAttribute("transactions", transactionManagementService.findAll());
         return "transaction/transactionList";

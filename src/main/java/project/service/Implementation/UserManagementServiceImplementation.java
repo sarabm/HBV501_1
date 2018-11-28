@@ -1,6 +1,7 @@
 package project.service.Implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.User;
 import project.persistence.repositories.UserRepository;
@@ -12,17 +13,20 @@ import java.util.List;
 public class UserManagementServiceImplementation implements UserManagementService {
 
     // Instance Variables
-    UserRepository repository;
-
+    private UserRepository repository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     //Dependency Injection
     @Autowired
-    public UserManagementServiceImplementation(UserRepository repository) {
+    public UserManagementServiceImplementation(UserRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.repository = repository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
     public User save(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRole("ROLE_USER");
         return repository.save(user);
     }
 
@@ -33,13 +37,14 @@ public class UserManagementServiceImplementation implements UserManagementServic
 
 
     @Override
-    public User findByUserName(String userName) {
-        User isak = new User();
+    public User findByUsername(String username) {
+        /*User isak = new User();
         isak.setUserName("Sakkattack");
         isak.setEmail("mymail@mail.com");
         isak.setFirstName("Ísak");
         isak.setLastName("Kolbeins");
-        return isak ; //repository.findByUserName(userName);
+        return isak ; //*/
+        return repository.findByUsername(username);
     }
 
     @Override

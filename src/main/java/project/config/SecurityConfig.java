@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import javax.sql.DataSource;
+
 //import javax.sql.DataSource;
 
 
@@ -28,8 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         return new BCryptPasswordEncoder();
     }
 
-    //@Autowired
-    //private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
     /**
      * jdbc authentication that saves our user while he is logged in
@@ -40,15 +42,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
      */
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        /*auth.jdbcAuthentication().dataSource(dataSource)
-                .passwordEncoder(new BCryptPasswordEncoder())
-                .authoritiesByUsernameQuery("select username, role from user where username=?");*/
+        auth.jdbcAuthentication()
+                .usersByUsernameQuery("select username as principal, password as credentials, true from \"user\" where username = ?")
+                .authoritiesByUsernameQuery("select username as principal, role as role from \"user\" where username = ?")
+                .dataSource(dataSource)
+                .passwordEncoder(new BCryptPasswordEncoder());
 
-        auth.inMemoryAuthentication()
-                .passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("user").password("{noop}password").authorities("ROLE_USER")
-                .and().withUser("isak").password(passwordEncoder().encode("isak"))
-                .authorities("ROLE_USER", "ROLE_ADMIN");
     }
 
     /**

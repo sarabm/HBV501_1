@@ -21,17 +21,17 @@ public interface UserManagementService {
 
     /**
      * Finds {@link User} by username
-     * @param userName
+     * @param username
      * @return
      */
-    User findByUserName(String userName);
+    User findByUsername(String username);
 
     /**
      * Find User by User Id {@link User}
-     * @param userId
+     * @param userid
      * @return
      */
-     User findByUserId(Long userId);
+     User findByUserId(Long userid);
 
     /**
      * Returns list of frend users

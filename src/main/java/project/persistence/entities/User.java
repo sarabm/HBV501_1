@@ -13,14 +13,15 @@ public class User {
     // Declare that this attribute is the id
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "userId", updatable = false, nullable = false)
+    @Column(name = "userid", updatable = false, nullable = false)
     private Long id;
 
-    private String userName;
-    private String firstName;
-    private String lastName;
+    private String username;
+    private String firstname;
+    private String lastname;
     private String email;
     private String password;
+    private String role;
 
     @Embedded
     private List<User> friendlist;
@@ -30,37 +31,36 @@ public class User {
     // to our model so we can use it with our form
     public User() {
     }
-    public User(String userName, String firstName, String lastName, String email, String password) {
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String username, String firstname, String lastname, String email, String password) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.password = password;
     }
 
-
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -77,6 +77,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public List<User> getFriendlist() {

@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 import project.persistence.entities.User;
 import project.service.UserManagementService;
 
@@ -38,13 +41,15 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String saveRegistration(@ModelAttribute("newUser") User newUser , Model model){
+    public String saveRegistration(@ModelAttribute("newUser") User newUser , Model model, RedirectAttributes redirectAttrs){
 
         List<String> errors = new ArrayList();
 
-        User usernameTaken = userManagementService.findByUserName(newUser.getUserName());
+
+        User usernameTaken = userManagementService.findByUsername(newUser.getUsername());
+
         if (usernameTaken != null) {
-            errors.add("The username " + newUser.getUserName() + " is already taken");
+            errors.add("The username " + newUser.getUsername() + " is already taken");
         }
 
         if (!errors.isEmpty()) {
@@ -54,9 +59,8 @@ public class RegistrationController {
         }
         else {
             userManagementService.save(newUser);
-            model.addAttribute("success", "User has been registered successfully");
-            model.addAttribute("newUser", newUser);
-            return "registration";
+            redirectAttrs.addFlashAttribute("msg", "A new user: " + newUser.getUsername() + " has been registered successfully");
+            return "redirect:/login";
         }
     }
 }

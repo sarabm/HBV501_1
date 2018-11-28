@@ -30,6 +30,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // Boolean validateUser(String username, String password);
 
-
-    User findByUserName(String userName);
+    @Query(value = "SELECT p FROM User p WHERE p.username = ?1")
+    User findByUsername(String username);
 }

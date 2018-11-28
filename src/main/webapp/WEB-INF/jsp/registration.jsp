@@ -18,33 +18,44 @@
 
     <h2>Registration form </h2>
 
-    <sf:form method="POST" modelAttribute="newUser" action="new">
+    <c:if test="${not empty errors}">
+        <c:forEach var="error" items="${errors}">
+            <p>${error}</p>
+        </c:forEach>
+
+    </c:if>
+    <c:if test="${not empty success}">
+        <p>${success}</p>
+        <a href="/login">Go to login</a>
+    </c:if>
+
+    <sf:form method="POST" modelAttribute="newUser" action="registration">
 
         <table>
             <tr>
                 <td>Username:</td>
                     <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-                <td><sf:input path="userName" type="text" placeholder="Username"/></td>
+                <td><sf:input path="username" type="text" placeholder="Username" required=""/></td>
             </tr>
             <tr>
                 <td>First name:</td>
                     <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-                <td><sf:input path="firstName" type="text" placeholder="First name"/></td>
+                <td><sf:input path="firstname" type="text" placeholder="First name" required=""/></td>
             </tr>
             <tr>
                 <td>Last name:</td>
                     <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-                <td><sf:input path="lastName" type="text" placeholder="Last name"/></td>
+                <td><sf:input path="lastname" type="text" placeholder="Last name" required=""/></td>
             </tr>
             <tr>
                 <td>Email:</td>
                     <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-                <td><sf:input path="email" type="email" placeholder="Email"/></td>
+                <td><sf:input path="email" type="email" placeholder="Email" required=""/></td>
             </tr>
             <tr>
                 <td>Password:</td>
                     <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-                <td><sf:input path="password" type="password" placeholder="Password"/></td>
+                <td><sf:input path="password" type="password" placeholder="Password" required=""/></td>
             </tr>
 
         </table>
