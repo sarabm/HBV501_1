@@ -57,4 +57,15 @@ public interface UserManagementService {
      */
      Boolean isLogedIn(Boolean loggedIn);
 
+
+    /**
+     * Appends each other to each others friendlist
+     * @param user
+     * @param friend
+     *
+     */
+
+     void addFriend(User user, User friend);
+
+
 }

@@ -20,7 +20,7 @@
 <%--Note that the `commandName` given here HAS TO MATCH the name of the attribute--%>
 <%--that is added to the model that is passed to the view.--%>
 <%--See PostitNoteController, method postitNoteViewGet(), and find where this attribute is added to the model.--%>
-<sf:form method="POST" modelAttribute="transaction" action="new">
+<sf:form method="POST" modelAttribute="transaction" action="/transaction">
 
     <table>
         <tr>
@@ -65,7 +65,9 @@
         </tr>
     </table>
 
-    <input type="submit" VALUE="Save"/>
+    <input type="submit" VALUE="Save" onclick="form.action='transaction';"/>
+
+
 
 </sf:form>
 

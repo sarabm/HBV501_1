@@ -15,9 +15,9 @@ import java.util.List;
  */
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    Account save(Account Account);
+    Account save(Account account);
 
-    void delete(Account Account);
+    void delete(Account account);
 
     List<Account> findAll();
 

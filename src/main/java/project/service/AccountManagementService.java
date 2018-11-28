@@ -49,7 +49,6 @@ public interface AccountManagementService {
      */
     //Transaction getTransactions(Account account);
 
-
     /**
      * Find by userId {@link Account}
      *      * @param User
@@ -57,5 +56,15 @@ public interface AccountManagementService {
      * @return
      */
     List<Account> findByUser(User user);
+
+    /**
+     * Create new account and set netballance to 0 {@link Account}
+     *      * @param User
+     * @param user1
+     * @param user2
+     * @return
+     */
+    // void createNew(User user1, User user2);
+
 
 }

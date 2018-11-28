@@ -25,8 +25,6 @@ public class LoginController {
     }
 
 
-
-    // Notice here that since the class has "/demo", this path is "/demo/page"
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null)

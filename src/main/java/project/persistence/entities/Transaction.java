@@ -28,7 +28,6 @@ public class Transaction {
     @ManyToOne
     private Account account;
 
-
     private Double amount;
     private String descr;
 

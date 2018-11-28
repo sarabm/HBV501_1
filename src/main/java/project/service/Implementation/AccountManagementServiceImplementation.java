@@ -9,6 +9,7 @@ import project.persistence.repositories.AccountRepository;
 import project.service.AccountManagementService;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -68,8 +69,16 @@ public class AccountManagementServiceImplementation implements AccountManagement
                 userAccounts.add(account);
             }
         }
-
         return userAccounts;
     }
 
+/*
+    @Override
+    public void createNew(User user1, User user2) {
+        Account account = new Account();
+        User[] users = {user1, user2};
+        account.setUsers(users);
+        account.setNetBalance(0.0);
+        save(account);
+    }*/
 }

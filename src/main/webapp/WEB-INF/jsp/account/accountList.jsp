@@ -3,6 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+
 <jsp:include page="../navBar.jsp" />
 
 
@@ -37,6 +39,16 @@
 
 </c:forEach>
 
+<h3>Find new friends</h3>
+<c:if test="${not empty msg}">
+    <p>${msg}</p>
+</c:if>
+
+
+<form action="all" method="post">
+    <input type="text" name="friendUserName" prefix="friend Username"/>
+    <input type="submit" VALUE="Add friend" onclick="form.action='all';"/>
+</form>
 
 
 <a href="/../..">Back to home page</a>

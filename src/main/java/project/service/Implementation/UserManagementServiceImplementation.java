@@ -7,6 +7,7 @@ import project.persistence.entities.User;
 import project.persistence.repositories.UserRepository;
 import project.service.UserManagementService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,6 +28,8 @@ public class UserManagementServiceImplementation implements UserManagementServic
     public User save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_USER");
+        List<User> friendlist = new ArrayList<>();
+        user.setFriendlist(friendlist);
         return repository.save(user);
     }
 
@@ -70,6 +73,23 @@ public class UserManagementServiceImplementation implements UserManagementServic
     public List<User> getFriends(User user){
         // Returns lit of user friens
         return user.getFriendlist();
+    }
+
+    @Override
+    public void addFriend(User user, User friend) {
+        List<User> userFriends = user.getFriendlist();
+        if (userFriends == null){
+            userFriends = new ArrayList<User>();
+        }
+        userFriends.add(friend);
+        user.setFriendlist(userFriends);
+
+        List<User> friendFriends = friend.getFriendlist();
+        if (friendFriends == null){
+            friendFriends = new ArrayList<User>();
+        }
+        friendFriends.add(user);
+        friend.setFriendlist(friendFriends);
     }
 }
 

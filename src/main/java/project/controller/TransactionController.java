@@ -123,11 +123,12 @@ public class TransactionController {
         // reference this attribute there by the name `postitNote`.
         //  model.addAttribute("postitNote", new PostitNote());
 
-        System.out.println(transaction.getDescr());
+        //System.out.println(transaction.getDescr());
         Long id = transaction.getId();
 
         // Return the view --- {" + id + "}
-        return "transaction/transactionView";
+        return "redirect:/transaction/"+id;
+        //return "";
     }
 
     // Method that returns the correct view for the URL /postit/{name}
