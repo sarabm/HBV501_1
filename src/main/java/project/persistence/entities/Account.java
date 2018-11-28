@@ -60,6 +60,10 @@ public class Account  {
         return netBalance;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setNetBalance(Double netBalance) {
         this.netBalance = netBalance;
     }

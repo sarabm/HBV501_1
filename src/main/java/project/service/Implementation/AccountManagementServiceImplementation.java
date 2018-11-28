@@ -59,13 +59,13 @@ public class AccountManagementServiceImplementation implements AccountManagement
     }*/
 
     @Override
-    public List<Account> findByUser(User user) {
+    public List<Account> findByUsername(String username) {
         List<Account> allAccounts = repository.findAll();
 
         List<Account> userAccounts = new ArrayList<Account>();
 
         for (Account account: allAccounts){
-            if(account.getUser1().equals(user) || account.getUser2().equals(user)){
+            if(account.getUser1().equals(username) || account.getUser2().equals(username)){
                 userAccounts.add(account);
             }
         }

@@ -55,7 +55,7 @@ public interface AccountManagementService {
      * @param user
      * @return
      */
-    List<Account> findByUser(User user);
+    List<Account> findByUsername(String username);
 
     /**
      * Create new account and set netballance to 0 {@link Account}

@@ -24,14 +24,18 @@
     <div>
         <a href="/account/${account.id}">
             <div>
-                <c:when test="${account.users[0]}.equals(${currUser})" >
-                    <h3>${account.users[1].username}</h3>
-                    <h3>Balance : ${account.netBalance}  </h3>
-                </c:when>
-                <c:otherwise>
-                    <h3>${account.users[0].username}</h3>
-                    <h3>Balance : ${-1*account.netBalance}  </h3>
-                </c:otherwise>
+                <c:set var="curr" value="${currUser.username}"/>
+                <c:set var="u1" value="${account.user1}"/>
+                <c:choose>
+                    <c:when test="${curr == u1}" >
+                        <h3>${account.user2}</h3>
+                        <h3>Balance : ${account.netBalance}  </h3>
+                    </c:when>
+                    <c:otherwise>
+                        <h3>${account.user1}</h3>
+                        <h3>Balance : ${-1*account.netBalance}  </h3>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </a>
         <p>___________________________________________</p>
