@@ -53,9 +53,9 @@ public interface AccountManagementService {
     /**
      * Find by userId {@link Account}
      *      * @param User
-     * @param userId
+     * @param user
      * @return
      */
-    Account findByUserId(Long userId);
+    List<Account> findByUser(User user);
 
 }

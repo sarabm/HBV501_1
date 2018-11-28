@@ -9,6 +9,7 @@ import project.persistence.repositories.AccountRepository;
 import project.service.AccountManagementService;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -57,8 +58,18 @@ public class AccountManagementServiceImplementation implements AccountManagement
     }*/
 
     @Override
-    public Account findByUserId(Long userId) {
-        return repository.findByUserId(userId);
+    public List<Account> findByUser(User user) {
+        List<Account> allAccounts = repository.findAll();
+
+        List<Account> userAccounts = new ArrayList<Account>();
+
+        for (Account account: allAccounts){
+            if(account.getUsers()[0].equals(user) || account.getUsers()[0].equals(user)){
+                userAccounts.add(account);
+            }
+        }
+
+        return userAccounts;
     }
 
 }

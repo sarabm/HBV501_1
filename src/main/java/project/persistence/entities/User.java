@@ -94,4 +94,6 @@ public class User {
     public void setFriendlist(List<User> friendlist) {
         this.friendlist = friendlist;
     }
+
+    public Long getId() {return id;}
 }
