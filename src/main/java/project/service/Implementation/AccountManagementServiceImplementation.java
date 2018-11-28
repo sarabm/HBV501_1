@@ -65,7 +65,7 @@ public class AccountManagementServiceImplementation implements AccountManagement
         List<Account> userAccounts = new ArrayList<Account>();
 
         for (Account account: allAccounts){
-            if(account.getUsers()[0].equals(user) || account.getUsers()[0].equals(user)){
+            if(account.getUser1().equals(user) || account.getUser2().equals(user)){
                 userAccounts.add(account);
             }
         }

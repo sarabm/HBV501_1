@@ -70,9 +70,7 @@ public class AccountsController {
                 if (!currUser.getFriendlist().contains(friend)) { // Ef þeir eru vinir do nothing
                     userManagementService.addFriend(currUser, friend);
                     Account account = new Account();
-                    User[] users;
-                    users = new User[] {currUser, friend};
-                    account.setUsers(users);
+                    account.setUsers(currUser.getUsername(),friend.getUsername());
                     account.setNetBalance(0.0);
                     System.out.println("_________________ " + account);
                     accountManagementService.save(account);

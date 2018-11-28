@@ -19,17 +19,40 @@ public class Account  {
     private List<Transaction> transactionList;
     //@JoinColumn(name = "transactionId")
 
+    private String user1;
+    private String user2;
 
-    private User[] users;
+
+    /*
+    @Embedded
+
+    private User[] users;*/
+
     private Double netBalance;
 
 
     public Account() {
     }
 
-    public Account(User[] users) {
-        this.users = users;
+    public Account(String user1, String user2) {
+        this.user1 = user1;
+        this.user2 = user2;
     }
+
+    public String getUser1() {
+        return user1;
+    }
+
+    public void setUsers(String user1,  String user2) {
+        this.user1 = user1;
+        this.user2 = user2;
+    }
+
+    public String getUser2() {
+        return user2;
+    }
+
+
 
     public List<Transaction> getTransactionList() {
         return transactionList;
@@ -39,13 +62,6 @@ public class Account  {
         this.transactionList = transactionList;
     }
 
-    public User[] getUsers() {
-        return users;
-    }
-
-    public void setUsers(User[] users) {
-        this.users = users;
-    }
 
     public Double getNetBalance() {
         return netBalance;

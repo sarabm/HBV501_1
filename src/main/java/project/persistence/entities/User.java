@@ -31,6 +31,7 @@ public class User {
     // to our model so we can use it with our form
     public User() {
     }
+
     public User(String username, String firstname, String lastname, String email, String password) {
         this.username = username;
         this.firstname = firstname;
