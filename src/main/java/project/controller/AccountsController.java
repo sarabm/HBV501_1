@@ -5,10 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.Account;
 import project.persistence.entities.User;
 import project.service.AccountManagementService;
@@ -58,9 +55,6 @@ public class AccountsController {
     public String allAccountsAddFriend(Model model, @RequestParam String friendUserName) {
         this.currUser = getUser();
 
-        // List<String> messages = new ArrayList<String>();
-        System.out.println("__________________________ Friendname : " + friendUserName);
-
         if(friendUserName != null && !friendUserName.isEmpty()){
             User friend = userManagementService.findByUsername(friendUserName);
             if (friend != null){
@@ -72,11 +66,8 @@ public class AccountsController {
                     Account account = new Account();
                     account.setUsers(currUser.getUsername(),friend.getUsername());
                     account.setNetBalance(0.0);
-                    System.out.println("_________________ " + account);
                     accountManagementService.save(account);
-                    //accountManagementService.createNew(currUser, friend);
                     model.addAttribute("msg", friend.getUsername() + " was succesfully added to your friends");
-                    //model.addAttribute("friendUserName", "");
                 } else {
                     model.addAttribute("msg", friend.getUsername() + " is already your friend");
                 }
@@ -88,6 +79,18 @@ public class AccountsController {
         model.addAttribute("currUser", currUser);
         model.addAttribute("accounts", accountManagementService.findByUsername(currUser.getUsername()));
         return "/account/accountList";
+    }
+
+    @RequestMapping(value = "/{accountID}", method = RequestMethod.GET)
+    public String transactionView(@PathVariable String accountID, Model model){
+        this.currUser = getUser();
+        Long id = Long.parseLong(accountID);
+        Account account = accountManagementService.findOne(id);
+        Boolean isUser1 = currUser.getUsername().equals(account.getUser1());
+        model.addAttribute("account", account);
+        model.addAttribute("isUser1", isUser1);
+
+        return "/account/accountView";
     }
 
 }

@@ -13,9 +13,41 @@
     </head>
     <body>
 
-    <h1>Account Overview</h1>
-    <p>Here you will be able to see the overview of an account between you and *Friend's name*</p>
+    <c:choose>
+        <c:when test="${isUser1}" >
+            <c:set var="sign" value="${1}"/>
+            <c:set var="friend" value="${account.user2}"/>
+        </c:when>
+        <c:otherwise>
+            <c:set var="sign" value="${-1}"/>
+            <c:set var="friend" value="${account.user1}"/>
+        </c:otherwise>
+    </c:choose>
+
+    <h2>${friend}:</h2>
+    <div>
+        <h3>Balance : ${sign * account.netBalance} </h3>
+        <c:if test="${sign * account.netBalance < 0}">
+            <a href="/payup">Pay Up</a>
+        </c:if>
+    </div>
+    <p>___________________________________________</p>
+
+    <c:forEach var="transaction" items="${account.transactionList}">
+        <div>
+            <a href="/transaction/${transaction.id}">
+                <div>
+                    <h4>Amount : ${sign * transaction.amount} </h4>
+                    <h4>Description : ${transaction.descr} </h4>
+                </div>
+            </a>
+            <p>___________________________________________</p>
+        </div>
+
+    </c:forEach>
+
      <a href="/../..">Click here to return home</a>
     </body>
+
     <footer></footer>
 </html>
