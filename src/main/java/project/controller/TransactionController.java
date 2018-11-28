@@ -6,14 +6,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import project.persistence.entities.PostitNote;
 import project.persistence.entities.Transaction;
 import project.persistence.entities.User;
 import project.service.TransactionManagementService;
 import project.service.UserManagementService;
-
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,47 +59,11 @@ public class TransactionController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String transactionNewGet(Model model /*ModelMap map*/){
         this.currUser = getUser();
-/*
-        User sakki = new User("sakki", "Ísak", "Kolbeins", "iak5@hi.is", "lykilord");
-        User frodo = new User("frodo", "Fríða", "Dóttir", "frodo@hi.is", "lykilord5");
-        User snara = new User("snara", "Sara", "Snara", "nice@hi.is", "SuperSecret");
-
-        List<User> friendlistSakki = new ArrayList<User>();
-        friendlistSakki.add(frodo);
-        friendlistSakki.add(snara);
-*/
-        /*
-        List<User> friendlistFrodo = new ArrayList<User>();
-        friendlistFrodo.add(sakki);
-        friendlistFrodo.add(snara);
-
-        List<User> friendlistSnara = new ArrayList<User>();
-        friendlistSnara.add(frodo);
-        friendlistSnara.add(sakki);*/
-
-        //sakki.setFriendlist(friendlistSakki);
-       //frodo.setFriendlist(friendlistFrodo);
-        //snara.setFriendlist(friendlistSnara);
-
-        //System.out.println(sakki);
-
-
-        //User sakki = new User();
-
-        // userManagementService.save(sakki);
-        //userManagementService.save(frodo);
-        //userManagementService.save(snara);
-
-        // Add new transaction to the model
-        model.addAttribute("transaction", new Transaction());
-
-        System.out.println("hér" + currUser.getFriendlist());
-
         List<User> friendlist = currUser.getFriendlist(); // Obtain all products.
-        model.addAttribute("friendlist", friendlist);
 
-        // Add user friendslist to the model
-        //model.addAttribute("friendlist", friendlistFrodo);
+        // Add new transaction and friendlist to the model
+        model.addAttribute("transaction", new Transaction());
+        model.addAttribute("friendlist", friendlist);
 
         // Return the view
         return "transaction/transactionNew";
@@ -116,17 +76,9 @@ public class TransactionController {
     public String transactionNewPost(@ModelAttribute("transaction") Transaction transaction,
                                      Model model){
 
-        /*@ModelAttribute("transaction") Transaction transaction,
-                                     @ModelAttribute("friendlist") List<User> friendlist,ModelMap map){*/
-
-
+        //bæta við það að account ID fylgi með
         // Save transaction from the form
         transactionManagementService.save(transaction);
-
-        // Add a new Postit Note to the model for the form
-        // If you look at the form in PostitNotes.jsp, you can see that we
-        // reference this attribute there by the name `postitNote`.
-        //  model.addAttribute("postitNote", new PostitNote());
 
         //System.out.println(transaction.getDescr());
         Long id = transaction.getId();
@@ -145,14 +97,9 @@ public class TransactionController {
 
     @RequestMapping(value = "/{transactionID}", method = RequestMethod.GET)
     public String transactionView(@PathVariable String transactionID,
-                                  Model model)
-            /*@RequestParam(value="transaction", required=false, defaultValue= "default") String transaction,
-                                  Model model)*/{
-
-
+                                  Model model) {
 
         // Return the view */
-        // System.out.println(transaction);
         Long id = Long.parseLong(transactionID);
 
         model.addAttribute("transaction", transactionManagementService.findOne(id));
@@ -161,36 +108,15 @@ public class TransactionController {
 
     // Method that returns the correct view for the URL /{transactionId}/update
     // This handles the GET request for this URL
-    @RequestMapping(value = "/{transactionId}/update", method = RequestMethod.GET)
-    public String transactionUpdateNew(Model model){
+    @RequestMapping(value = "/{transactionID}/update", method = RequestMethod.GET)
+    public String transactionUpdateNew(@PathVariable String transactionID, Model model){
 
-        // Add a new Postit Note to the model for the form
-        // If you look at the form in PostitNotes.jsp, you can see that we
-        // reference this attribute there by the name `postitNote`.
-        model.addAttribute("postitNote",new PostitNote());
+        /*Long id = Long.parseLong(transactionID);
+        Transaction transaction = transactionManagementService.findOne(id);
 
-        // Here we get all the Postit Notes (in a reverse order) and add them to the model
-        // model.addAttribute("postitNotes",postitNoteService.findAllReverseOrder());
 
-        // Return the view
-        return "postitnotes/PostitNotes";
+        model.addAttribute("transaction",transaction);
+       */
+        return "ransaction/transactionNew";
     }
-
-
-    @RequestMapping(value = "/{transactionId}/update", method = RequestMethod.POST)
-    public String transactionUpdateSave(@PathVariable String name,
-                                             Model model){
-        /*
-        // Get all Postit Notes with this name and add them to the model
-        model.addAttribute("postitNotes", postitNoteService.findByName(name));
-
-        // Add a new Postit Note to the model for the form
-        // If you look at the form in PostitNotes.jsp, you can see that we
-        // reference this attribute there by the name `postitNote`.
-        model.addAttribute("postitNote", new PostitNote());
-
-        // Return the view */
-        return "postitnotes/PostitNotes";
-    }
-
 }
