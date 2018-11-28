@@ -71,8 +71,13 @@ public class UserManagementServiceImplementation implements UserManagementServic
 
     @Override
     public List<User> getFriends(User user){
+        /*
+        for (Object id: user.getFriendlist()) {
+            system.id.toString()
+        }*/
+
         // Returns lit of user friens
-        return user.getFriendlist();
+        return null;
     }
 
     @Override

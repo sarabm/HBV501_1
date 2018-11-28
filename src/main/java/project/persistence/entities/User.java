@@ -23,7 +23,7 @@ public class User {
     private String email;
     private String password;
     private String role;
-    @ManyToMany
+    /*@ManyToMany
     protected List<User> friendlist = null;
 
 
@@ -33,13 +33,13 @@ public class User {
             name="USER_FRIEND",
             joinColumns=@JoinColumn(name="USER_ID"),
             inverseJoinColumns=@JoinColumn(name="FRIEND_ID")
-    )
+    )*/
     public List getFriendlist() {
         return friendlist;
     }
-    /*
+
     @ManyToMany
-    protected List<User> friendlist = null;*/
+    protected List<User> friendlist = null;
 
 
 

@@ -35,32 +35,13 @@
         </tr>
         <tr>
             <td>Friends:</td>
-                <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
             <td class="friendlist">
-                <label for="frida">
-                    <input type="checkbox" name="friend" id="frida">
-                    <span>
-                         Fríða
-                    </span>
-                </label>
-                <label for="sara">
-                    <input type="checkbox" name="friend" id="sara">
-                    <span>
-                         Sara
-                    </span>
-                </label>
-                <label for="isak">
-                    <input type="checkbox" name="friend" id="isak">
-                    <span>
-                         Ísak
-                    </span>
-                </label>
-                <label for="pall">
-                    <input type="checkbox" name="friend" id="pall">
-                    <span>
-                         Páll
-                    </span>
-                </label>
+                <c:forEach var="friend" items="friendlist">
+                    <label for="${friend.username}">
+                        <input type="checkbox" name="friend" id="${friend.username}">
+                        <span>${friend.username}</span>
+                    </label>
+                </c:forEach>
             </td>
         </tr>
     </table>

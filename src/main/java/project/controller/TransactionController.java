@@ -62,7 +62,8 @@ public class TransactionController {
     // This handles the GET request for this URL
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String transactionNewGet(Model model /*ModelMap map*/){
-
+        this.currUser = getUser();
+/*
         User sakki = new User("sakki", "Ísak", "Kolbeins", "iak5@hi.is", "lykilord");
         User frodo = new User("frodo", "Fríða", "Dóttir", "frodo@hi.is", "lykilord5");
         User snara = new User("snara", "Sara", "Snara", "nice@hi.is", "SuperSecret");
@@ -70,7 +71,7 @@ public class TransactionController {
         List<User> friendlistSakki = new ArrayList<User>();
         friendlistSakki.add(frodo);
         friendlistSakki.add(snara);
-
+*/
         /*
         List<User> friendlistFrodo = new ArrayList<User>();
         friendlistFrodo.add(sakki);
@@ -80,7 +81,7 @@ public class TransactionController {
         friendlistSnara.add(frodo);
         friendlistSnara.add(sakki);*/
 
-        sakki.setFriendlist(friendlistSakki);
+        //sakki.setFriendlist(friendlistSakki);
        //frodo.setFriendlist(friendlistFrodo);
         //snara.setFriendlist(friendlistSnara);
 
@@ -89,16 +90,16 @@ public class TransactionController {
 
         //User sakki = new User();
 
-        userManagementService.save(sakki);
+        // userManagementService.save(sakki);
         //userManagementService.save(frodo);
         //userManagementService.save(snara);
 
         // Add new transaction to the model
         model.addAttribute("transaction", new Transaction());
+        model.addAttribute("friendlist", currUser.getFriendlist());
 
         // Add user friendslist to the model
         //model.addAttribute("friendlist", friendlistFrodo);
-
 
         // Return the view
         return "transaction/transactionNew";
