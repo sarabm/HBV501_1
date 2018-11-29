@@ -49,6 +49,10 @@ public interface AccountManagementService {
      */
     //Transaction getTransactions(Account account);
 
+    Account findAccountByUsers(String user1, String user2);
+
+    void updateBalance(Double ammount, Account account);
+
     /**
      * Find by userId {@link Account}
      *      * @param User

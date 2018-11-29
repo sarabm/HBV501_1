@@ -6,6 +6,7 @@ import project.persistence.entities.Account;
 import project.persistence.entities.Transaction;
 import project.persistence.entities.User;
 import project.persistence.repositories.AccountRepository;
+import project.persistence.repositories.TransactionRepository;
 import project.service.AccountManagementService;
 
 
@@ -45,6 +46,17 @@ public class AccountManagementServiceImplementation implements AccountManagement
     @Override
     public Account findOne(Long accountId) {
         return repository.findOne(accountId);
+    }
+
+    @Override
+    public Account findAccountByUsers(String user1, String user2)
+        {return repository.findAccountByUsers(user1, user2);}
+
+    @Override
+    public void updateBalance(Double ammount, Account account){
+        Double newAmmount = account.getNetBalance()+ammount;
+        account.setNetBalance(newAmmount);
+        repository.save(account);
     }
 
   /*
