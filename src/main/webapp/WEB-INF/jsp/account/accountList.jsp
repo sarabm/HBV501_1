@@ -12,16 +12,18 @@
 
 <head>
     <title>Lil Bill</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/account/accountList.css"/>"/>
 </head>
 <body>
+<div class="account-list-container">
 
-<h1>You're accounts</h1>
+    <div class="account-list-inner">
 
-<br>
-<p>___________________________________________</p>
+        <h1>Accounts </h1>
 
+        <div class="account-list">
 <c:forEach var="account" items="${accounts}">
-    <div>
+    <div class="account-list-item">
         <a href="/account/${account.id}">
             <div>
                 <c:set var="curr" value="${currUser.username}"/>
@@ -38,24 +40,25 @@
                 </c:choose>
             </div>
         </a>
-        <p>___________________________________________</p>
     </div>
 
 </c:forEach>
-
-<h3>Find new friends</h3>
+        </div>
+    </div>
+    <div class="find-friends">
+<h2>Find new friends</h2>
 <c:if test="${not empty msg}">
     <p>${msg}</p>
 </c:if>
 
 
 <form action="all" method="post">
-    <input type="text" name="friendUserName" prefix="friend Username"/>
-    <input type="submit" VALUE="Add friend" onclick="form.action='all';"/>
+    <input class="form-input" type="text" name="friendUserName" prefix="friend Username"/>
+    <input class="button" type="submit" VALUE="Add friend" onclick="form.action='all';"/>
 </form>
 
-
-<a href="/../..">Back to home page</a>
+    </div>
+</div>
 </body>
 
 

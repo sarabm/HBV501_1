@@ -6,8 +6,6 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<jsp:include page="navBar.jsp" />
-
 <c:set var="contextPath" value=""/>
 
 

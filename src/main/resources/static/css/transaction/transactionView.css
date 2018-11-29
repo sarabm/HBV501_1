@@ -1,0 +1,46 @@
+.view-transaction-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.view-transaction {
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.view-transaction h1,
+h2,
+h3 {
+    text-align: center;
+}
+
+body {
+    background-color: #f6f8fa;
+    color: #4287d5;
+    margin: 0;
+    margin-top: 70px;
+    font-family: sans-serif;
+}
+
+.account-button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.account-button {
+    padding: 10px 30px;
+    background-color: #4287d5;
+    color: #eee;
+    border: 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    width: 120px;
+}
+
+.account-button a {
+    color: #eee;
+    text-decoration: none;
+}
