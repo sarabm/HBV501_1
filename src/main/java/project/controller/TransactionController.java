@@ -1,5 +1,6 @@
 package project.controller;
 
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,8 @@ import project.service.TransactionManagementService;
 import project.service.UserManagementService;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -54,10 +57,13 @@ public class TransactionController {
         // To use current user,,,,, call this
         this.currUser = getUser();
 
-        model.addAttribute("userName", currUser.getUsername());
-        model.addAttribute("firstName", currUser.getFirstname());
+        List <Transaction> allTransactions = transactionManagementService.findAll();
+
+        allTransactions.sort((t1, t2) -> t1.getDate().compareTo(t2.getDate()));
+        Collections.reverse(allTransactions);
+
         model.addAttribute("currUser", currUser);
-        model.addAttribute("transactions", transactionManagementService.findAll());
+        model.addAttribute("transactions", allTransactions);
         return "transaction/transactionList";
     }
 
@@ -100,7 +106,7 @@ public class TransactionController {
                                      Model model){
 
         List <String> splitNames = transaction.getSplitInfo();
-        Double splitAmmount = transaction.getAmount() / splitNames.size();
+        Double splitAmmount = (int)((transaction.getAmount() / splitNames.size())*100)/100.0;
         Long currSplitId = null;
 
         for (String name: splitNames) {

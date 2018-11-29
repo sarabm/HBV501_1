@@ -17,22 +17,43 @@
 
     <div class="transaction-list-inner">
 
-<h1>All Transactions </h1>
+        <h1>All Transactions </h1>
 
-<div class="transaction-list">
+        <div class="transaction-list">
 
-<c:forEach var="transaction" items="${transactions}">
-    <div class="transaction-list-item">
-        <a href="/transaction/${transaction.id}">
-            <div>
-                <h3>Amount: ${transaction.amount} </h3>
-                <h3>Description: ${transaction.descr} </h3>
-            </div>
-        </a>
-    </div>
+            <c:forEach var="transaction" items="${transactions}">
 
-</c:forEach>
-    </div>
+                <c:set var="isUser1" value="${transaction.account.user1 == currUser.username}"/>
+                <c:choose>
+                    <c:when test="${isUser1}" >
+                        <c:set var="sign" value="${-1}"/>
+                        <c:set var="friend" value="${transaction.account.user2}"/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:set var="sign" value="${1}"/>
+                        <c:set var="friend" value="${transaction.account.user1}"/>
+                    </c:otherwise>
+                </c:choose>
+                <c:set var="className" value="plus"/>
+                <c:if test="${sign*transaction.amount < 0}">
+                    <c:set var="className" value="minus"/>
+                </c:if>
+
+                <div class="transaction-list-item">
+                    <div>
+                        <a href="/account/${transaction.account.id}">
+                            <h2>${friend}</h2>
+                        </a>
+                        <a href="/transaction/${transaction.id}">
+                            <h3 class="${className}"> ${transaction.amount}.- </h3>
+                            <p> ${transaction.date} </p>
+                        </a>
+
+                    </div>
+                </div>
+
+            </c:forEach>
+        </div>
 
 
 
