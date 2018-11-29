@@ -70,5 +70,4 @@ public interface AccountManagementService {
      */
     // void createNew(User user1, User user2);
 
-
 }

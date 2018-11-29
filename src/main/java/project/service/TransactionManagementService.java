@@ -19,6 +19,8 @@ public interface TransactionManagementService {
      */
     void delete(Transaction Transaction);
 
+    List<Transaction> findBySplitId(Long splitId);
+
     /**
      * Get all {@link Transaction}s
      * @return A list of {@link Transaction}s
