@@ -19,18 +19,18 @@
 
     <c:choose>
         <c:when test="${isUser1}" >
-            <c:set var="sign" value="${-1}"/>
+            <c:set var="sign" value="${1}"/>
             <c:set var="friend" value="${account.user2}"/>
         </c:when>
         <c:otherwise>
-            <c:set var="sign" value="${1}"/>
+            <c:set var="sign" value="${-1}"/>
             <c:set var="friend" value="${account.user1}"/>
         </c:otherwise>
     </c:choose>
 
     <h2>Account with ${friend}</h2>
             <div class="transaction-list">
-    <c:forEach var="transaction" items="${account.transactionList}">
+    <c:forEach var="transaction" items="${transactions}">
         <div class="transaction-list-item">
             <a href="/transaction/${transaction.id}">
                 <div>
@@ -48,7 +48,7 @@
             <h2>${sign * account.netBalance} </h2>
             <c:if test="${sign * account.netBalance < 0}">
             <div class="button">
-                <a href="/payup">Pay Up</a>
+                <a href="/account/${account.id}/payup">Pay Up</a>
             </div>
             </c:if>
         </div>

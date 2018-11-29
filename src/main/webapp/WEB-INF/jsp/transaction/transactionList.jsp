@@ -26,11 +26,11 @@
                 <c:set var="isUser1" value="${transaction.account.user1 == currUser.username}"/>
                 <c:choose>
                     <c:when test="${isUser1}" >
-                        <c:set var="sign" value="${-1}"/>
+                        <c:set var="sign" value="${1}"/>
                         <c:set var="friend" value="${transaction.account.user2}"/>
                     </c:when>
                     <c:otherwise>
-                        <c:set var="sign" value="${1}"/>
+                        <c:set var="sign" value="${-1}"/>
                         <c:set var="friend" value="${transaction.account.user1}"/>
                     </c:otherwise>
                 </c:choose>
@@ -45,7 +45,7 @@
                             <h2>${friend}</h2>
                         </a>
                         <a href="/transaction/${transaction.id}">
-                            <h3 class="${className}"> ${transaction.amount}</h3>
+                            <h3 class="${className}"> ${sign*transaction.amount}</h3>
                             <p> ${transaction.date} </p>
                         </a>
 

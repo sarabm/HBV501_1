@@ -102,22 +102,36 @@ public class TransactionController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String transactionNewPost(@ModelAttribute("transaction") Transaction transaction,
                                      Model model){
+        this.currUser = getUser();
 
         List <String> splitNames = transaction.getSplitInfo();
+        List <String> splitInfo = new ArrayList<String>(splitNames);
         Double splitAmmount = (int)((transaction.getAmount() / splitNames.size())*100)/100.0;
         Long currSplitId = null;
 
+        if(splitInfo.get(0).equals("Me")) splitInfo.remove(0);
+        splitInfo.add(0,currUser.getUsername());
+        splitInfo.add(0,splitAmmount.toString());
+
+
+
+
         for (String name: splitNames) {
-            if(name.equals("Me"));
+            if(name.equals("Me")){
+
+            }
             else {
                 Account currAccount = accountManagementService.findAccountByUsers(currUser.getUsername(), name);
                 Transaction currTransaction = new Transaction();
 
                 currTransaction.setAccount(currAccount);
                 currTransaction.setDescr(transaction.getDescr());
+                currTransaction.setSplitInfo(splitInfo);
 
                 int prefix = -1;
-                if (currAccount.getUser1().equals(currUser)){prefix = 1;}
+                if (currAccount.getUser1().equals(currUser.getUsername())){
+                    prefix = 1;
+                }
                 currTransaction.setAmount(prefix*splitAmmount);
                 accountManagementService.updateBalance(prefix*splitAmmount, currAccount);
 
@@ -146,11 +160,19 @@ public class TransactionController {
     @RequestMapping(value = "/{transactionID}", method = RequestMethod.GET)
     public String transactionView(@PathVariable String transactionID,
                                   Model model) {
+        this.currUser = getUser();
 
         // Return the view */
         Long id = Long.parseLong(transactionID);
+        Transaction transaction = transactionManagementService.findOne(id);
 
-        model.addAttribute("transaction", transactionManagementService.findOne(id));
+        int prefix = -1;
+        if (transaction.getAccount().getUser1().equals(currUser.getUsername())) {
+            prefix =1;
+        }
+
+        model.addAttribute("transaction", transaction);
+        model.addAttribute("sign", prefix);
         return "transaction/transactionView";
     }
 

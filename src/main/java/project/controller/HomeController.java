@@ -57,7 +57,12 @@ public class HomeController {
         List<Transaction> allTransactions = transactionManagementService.findAll();
         allTransactions.sort((t1, t2) -> t1.getDate().compareTo(t2.getDate()));
         Collections.reverse(allTransactions);
-        List<Transaction> lastestTransactions = new ArrayList<Transaction>(allTransactions.subList(0, 4));
+        List<Transaction> lastestTransactions;
+        if (allTransactions.size() > 4){
+            lastestTransactions = new ArrayList<Transaction>(allTransactions.subList(0, 4));
+        } else {
+            lastestTransactions = allTransactions;
+        }
 
         model.addAttribute("currUser", currUser);
         model.addAttribute("transactions", lastestTransactions);

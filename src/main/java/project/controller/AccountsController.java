@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.Account;
+import project.persistence.entities.Transaction;
 import project.persistence.entities.User;
 import project.service.AccountManagementService;
+import project.service.TransactionManagementService;
 import project.service.UserManagementService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -26,6 +29,7 @@ public class AccountsController {
     //Instance Variables
     private UserManagementService userManagementService;
     private AccountManagementService accountManagementService;
+    private TransactionManagementService transactionManagementService;
 
     private User currUser;
 
@@ -36,9 +40,12 @@ public class AccountsController {
     }
     //Dependency Injection
     @Autowired
-    public AccountsController(UserManagementService userManagementService, AccountManagementService accountManagementService) {
+    public AccountsController(UserManagementService userManagementService,
+                              AccountManagementService accountManagementService,
+                              TransactionManagementService transactionManagementService) {
         this.userManagementService = userManagementService;
         this.accountManagementService = accountManagementService;
+        this.transactionManagementService = transactionManagementService;
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -87,10 +94,73 @@ public class AccountsController {
         Long id = Long.parseLong(accountID);
         Account account = accountManagementService.findOne(id);
         Boolean isUser1 = currUser.getUsername().equals(account.getUser1());
+        List <Transaction> transactions = account.getTransactionList();
+        transactions.sort((t1, t2) -> t1.getDate().compareTo(t2.getDate()));
+        Collections.reverse(transactions);
+
+
         model.addAttribute("account", account);
+        model.addAttribute("transactions", transactions);
         model.addAttribute("isUser1", isUser1);
 
         return "/account/accountView";
+    }
+
+    @RequestMapping(value = "/{accountID}/payup", method = RequestMethod.GET)
+    public String getPayUp(@PathVariable String accountID, Model model){
+        this.currUser = getUser();
+        Long id = Long.parseLong(accountID);
+        Account account = accountManagementService.findOne(id);
+        Boolean isUser1 = currUser.getUsername().equals(account.getUser1());
+
+        String friendName = account.getUser2();
+        int prefix = -1;
+        if(isUser1) {
+            friendName = account.getUser1();
+            prefix = 1;
+        }
+
+        Transaction transaction = new Transaction();
+        transaction.setAmount(prefix*account.getNetBalance());
+        List <String> splitInfo = new ArrayList<>();
+        splitInfo.add(friendName);
+        transaction.setAccount(account);
+        transaction.setDescr("_____Pay Up_____");
+
+        model.addAttribute("friend", friendName);
+        model.addAttribute("transaction", transaction);
+
+        return "/account/payUp";
+    }
+
+    @RequestMapping(value = "/{accountID}/payup", method = RequestMethod.POST)
+    public String savePayUp(@PathVariable String accountID, @ModelAttribute("transaction") Transaction transaction, Model model){
+        this.currUser = getUser();
+        Double ammount = transaction.getAmount();
+
+        Long id = Long.parseLong(accountID);
+        Account account = accountManagementService.findOne(id);
+        Boolean isUser1 = currUser.getUsername() == account.getUser1();
+
+        String friendName = account.getUser1();
+        int prefix = -1;
+        if(isUser1) {
+            friendName = account.getUser2();
+            prefix = 1;
+        }
+
+        List <String> splitInfo = new ArrayList<>();
+        splitInfo.add(friendName);
+
+        transaction.setAccount(account);
+        transaction.setDescr("_____Pay Up_____");
+        transaction.setAmount(prefix*account.getNetBalance());
+
+        accountManagementService.updateBalance(prefix*account.getNetBalance(),account);
+        transactionManagementService.save(transaction);
+
+
+        return "redirect:/transaction/all";
     }
 
 }
