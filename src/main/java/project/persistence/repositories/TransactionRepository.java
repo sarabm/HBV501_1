@@ -33,4 +33,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     @Query(value = "SELECT p FROM Transaction p WHERE p.id = ?1")
     Transaction findByUserId(Long id);
 
+
+    List<Transaction> findBySplitId(Long splitId);
 }

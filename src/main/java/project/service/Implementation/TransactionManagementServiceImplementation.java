@@ -42,7 +42,13 @@ public class TransactionManagementServiceImplementation implements TransactionMa
     public Transaction findOne(Long transactionId) {
         return repository.findOne(transactionId);
     }
-/*
+
+
+    @Override
+    public List<Transaction> findBySplitId(Long splitId) {
+        return repository.findBySplitId(splitId);
+    }
+    /*
     @Override
     public Transaction findByUserId(Long userId) {
         return repository.findByUserId(userId);
