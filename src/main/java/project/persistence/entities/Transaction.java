@@ -1,6 +1,8 @@
 package project.persistence.entities;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 /**
  * The class for the Transaction Note itself.
  * The system generates a table schema based on this class for this entity.
@@ -30,6 +32,9 @@ public class Transaction {
 
     private Double amount;
     private String descr;
+
+    @Embedded
+    private List<String> splitInfo;
 
     @Temporal(TemporalType.DATE)
     private Date date = new Date();
@@ -90,8 +95,11 @@ public class Transaction {
     public void setDescr(String descr) {
         this.descr = descr;
     }
-
+    public List<String> getSplitInfo() {return splitInfo;}
+    public void setSplitInfo(List<String> splitInfo) {this.splitInfo = splitInfo;}
     public Account getAccount() {
         return account;
     }
+    public void setAccount(Account account) {this.account = account;}
+    public Date getDate() {return date;}
 }

@@ -24,7 +24,7 @@
 
     <table>
         <tr>
-            <td> Amount:</td>
+            <td>Amount:</td>
                 <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
             <td><sf:input path="amount" type="number" placeholder="Enter amount"/></td>
         </tr>
@@ -35,14 +35,22 @@
         </tr>
         <tr>
             <td>Friends:</td>
-            <td class="friendlist">
--                <c:forEach var="user" items="${friendlist}">
+            <td>
+            <sf:checkboxes items = "${splitList}" path = "splitInfo" />
+            </td>
+
+            <%-- <td class="friendlist">
+                <label for=Me>
+                    <input type="checkbox" name="selected" id="Me" value="Me">
+                    <span>Me</span>
+                </label>
+-               <c:forEach var="user" items="${friendlist}">
                     <label for="${user.username}">
-                        <input type="checkbox" name="selected" id="${user.username}">
+                        <input type="checkbox" name="selected" id="${user.username}" value="${user.username}">
                         <span>${user.username}</span>
                     </label>
                 </c:forEach>
-            </td>
+            </td> --%>
         </tr>
     </table>
 
