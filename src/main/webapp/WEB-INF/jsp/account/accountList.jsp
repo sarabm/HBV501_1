@@ -29,11 +29,11 @@
                 <c:choose>
                     <c:when test="${curr == u1}" >
                         <h3>${account.user2}</h3>
-                        <h3>Balance : ${account.netBalance}  </h3>
+                        <h3>Balance : ${-1*account.netBalance}  </h3>
                     </c:when>
                     <c:otherwise>
                         <h3>${account.user1}</h3>
-                        <h3>Balance : ${-1*account.netBalance}  </h3>
+                        <h3>Balance : ${account.netBalance}  </h3>
                     </c:otherwise>
                 </c:choose>
             </div>

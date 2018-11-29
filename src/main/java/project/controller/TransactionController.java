@@ -83,7 +83,7 @@ public class TransactionController {
 
         // Add new transaction and friendlist to the model
         Transaction transaction = new Transaction();
-        transaction.setSplitInfo(getSplitList());
+        // transaction.setSplitInfo(getSplitList());
 
         model.addAttribute("transaction", transaction);
         // model.addAttribute("friendlist", friendlist);
@@ -106,30 +106,29 @@ public class TransactionController {
         for (String name: splitNames) {
             if(name.equals("Me"));
             else {
-                Account currAccount;
-                //accountManagementService.findByUsername // add account
-                // get is User1
+                Account currAccount = accountManagementService.findAccountByUsers(currUser.getUsername(), name);
                 Transaction currTransaction = new Transaction();
-                transaction.setAmount(splitAmmount);
-                transaction.setDescr(transaction.getDescr());
 
+                currTransaction.setAccount(currAccount);
+                currTransaction.setDescr(transaction.getDescr());
+
+                int prefix = -1;
+                if (currAccount.getUser1().equals(currUser)){prefix = 1;}
+                currTransaction.setAmount(prefix*splitAmmount);
+                accountManagementService.updateBalance(prefix*splitAmmount, currAccount);
+
+                if (currSplitId == null){
+                    transactionManagementService.save(currTransaction);
+                    currSplitId = currTransaction.getId();
+                }
+
+                currTransaction.setSplitId(currSplitId);
+                transactionManagementService.save(currTransaction);
             }
-
-
         }
 
-
-
-        //String[] selections = request.getParameterValues("selection");
-
-        //bæta við það að account ID fylgi með
-        // Save transaction from the form
-        transactionManagementService.save(transaction);
-
-        //System.out.println(transaction.getDescr());
-        Long id = transaction.getId();
-        // Return the view --- {" + id + "}
-        return "redirect:/transaction/"+id;
+        return "redirect:/transaction/all";
+        // Mögulega að bomba á view transaction
         //return "";
     }
 

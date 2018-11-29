@@ -15,11 +15,11 @@
 
     <c:choose>
         <c:when test="${isUser1}" >
-            <c:set var="sign" value="${1}"/>
+            <c:set var="sign" value="${-1}"/>
             <c:set var="friend" value="${account.user2}"/>
         </c:when>
         <c:otherwise>
-            <c:set var="sign" value="${-1}"/>
+            <c:set var="sign" value="${1}"/>
             <c:set var="friend" value="${account.user1}"/>
         </c:otherwise>
     </c:choose>
