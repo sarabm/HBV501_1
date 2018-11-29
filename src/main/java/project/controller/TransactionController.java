@@ -15,7 +15,6 @@ import project.service.TransactionManagementService;
 import project.service.UserManagementService;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -58,7 +57,6 @@ public class TransactionController {
         this.currUser = getUser();
 
         List <Transaction> allTransactions = transactionManagementService.findAll();
-
         allTransactions.sort((t1, t2) -> t1.getDate().compareTo(t2.getDate()));
         Collections.reverse(allTransactions);
 

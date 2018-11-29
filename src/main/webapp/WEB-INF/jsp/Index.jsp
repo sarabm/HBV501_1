@@ -18,26 +18,43 @@
 
         <div class="transaction-list-inner">
 
-            <h1>Hello username! </h1>
+            <h1>Hello ${currUser.username}! </h1>
 
             <h3> Recent transactions</h3>
             <div class="transaction-list">
-                <div class="transaction-list-item">
-                    <a href="/transaction/${transaction.id}">
+
+                <c:forEach var="transaction" items="${transactions}">
+
+                    <c:set var="isUser1" value="${transaction.account.user1 == currUser.username}"/>
+                    <c:choose>
+                        <c:when test="${isUser1}" >
+                            <c:set var="sign" value="${-1}"/>
+                            <c:set var="friend" value="${transaction.account.user2}"/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="sign" value="${1}"/>
+                            <c:set var="friend" value="${transaction.account.user1}"/>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:set var="className" value="plus"/>
+                    <c:if test="${sign*transaction.amount < 0}">
+                        <c:set var="className" value="minus"/>
+                    </c:if>
+
+                    <div class="transaction-list-item">
                         <div>
-                            <h3>Amount: {transaction.amount} </h3>
-                            <h3>${transaction.descr} </h3>
+                            <a href="/account/${transaction.account.id}">
+                                <h2>${friend}</h2>
+                            </a>
+                            <a href="/transaction/${transaction.id}">
+                                <h3 class="${className}"> ${transaction.amount}.- </h3>
+                                <p> ${transaction.date} </p>
+                            </a>
+
                         </div>
-                    </a>
-                </div>
-                <div class="transaction-list-item">
-                    <a href="/transaction/${transaction.id}">
-                        <div>
-                            <h3>Amount: {transaction.amount} </h3>
-                            <h3>{transaction.descr} </h3>
-                        </div>
-                    </a>
-                </div>
+                    </div>
+
+                </c:forEach>
             </div>
             <div class="all-trans-button-container">
                 <div class="all-trans-button">

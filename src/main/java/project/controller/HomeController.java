@@ -1,21 +1,49 @@
 package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import project.persistence.entities.Transaction;
+import project.persistence.entities.User;
+import project.service.AccountManagementService;
 import project.service.StringManipulationService;
+import project.service.TransactionManagementService;
+import project.service.UserManagementService;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
     // Instance Variables
     StringManipulationService stringService;
+    // Instance Variables
+    private TransactionManagementService transactionManagementService;
+    private UserManagementService userManagementService;
+    private AccountManagementService accountManagementService;
+    private User currUser;
+
+    // Getting current user  ---
+    private User getUser() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userManagementService.findByUsername(userDetails.getUsername());
+    }
 
     // Dependency Injection
     @Autowired
-    public HomeController(StringManipulationService stringService) {
+    public HomeController(TransactionManagementService transactionManagementService,
+                          UserManagementService userManagementService,
+                          AccountManagementService accountManagementService,
+                          StringManipulationService stringService) {
+        this.transactionManagementService = transactionManagementService;
+        this.userManagementService = userManagementService;
+        this.accountManagementService = accountManagementService;
         this.stringService = stringService;
     }
 
@@ -24,12 +52,15 @@ public class HomeController {
     // is running and you enter "localhost:8080" into a browser, this
     // method is called
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(){
+    public String home(Model model){
+        this.currUser = getUser();
+        List<Transaction> allTransactions = transactionManagementService.findAll();
+        allTransactions.sort((t1, t2) -> t1.getDate().compareTo(t2.getDate()));
+        Collections.reverse(allTransactions);
+        List<Transaction> lastestTransactions = new ArrayList<Transaction>(allTransactions.subList(0, 4));
 
-        // The string "Index" that is returned here is the name of the view
-        // (the Index.jsp file) that is in the path /main/webapp/WEB-INF/jsp/
-        // If you change "Index" to something else, be sure you have a .jsp
-        // file that has the same name
+        model.addAttribute("currUser", currUser);
+        model.addAttribute("transactions", lastestTransactions);
         return "Index";
     }
 

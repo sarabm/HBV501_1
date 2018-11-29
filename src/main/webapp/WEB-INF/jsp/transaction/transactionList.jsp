@@ -45,7 +45,7 @@
                             <h2>${friend}</h2>
                         </a>
                         <a href="/transaction/${transaction.id}">
-                            <h3 class="${className}"> ${transaction.amount}.- </h3>
+                            <h3 class="${className}"> ${transaction.amount}</h3>
                             <p> ${transaction.date} </p>
                         </a>
 
