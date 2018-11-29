@@ -1,0 +1,98 @@
+.new-transaction-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.new-transaction {
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-transaction h1 {
+    text-align: center;
+}
+
+div label input {
+    margin-right: 100px;
+}
+body {
+    background-color: #f6f8fa;
+    color: #4287d5;
+    margin: 0;
+    margin-top: 70px;
+    font-family: sans-serif;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+.form-group .form-input {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #becfe0;
+    border-radius: 5px;
+}
+
+.form-group .button {
+    padding: 10px 30px;
+    background-color: #4287d5;
+    color: #eee;
+    border: 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.friendlist {
+    margin: 4px;
+    overflow: auto;
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.friendlist span {
+    float: left;
+    width: 4em;
+}
+
+.friendlist span label {
+    text-align: center;
+    padding: 3px 0px;
+    display: block;
+}
+
+.friendlist span input {
+    position: absolute;
+    top: -20px;
+}
+
+.friendlist input:checked + label {
+    background-color: #4287d5;
+    color: #fff;
+}
+
+.find-friends .form-input {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #becfe0;
+    border-radius: 5px;
+}
+
+.find-friends .button {
+    padding: 10px 10px;
+    background-color: #4287d5;
+    color: #eee;
+    border: 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 16px;
+}

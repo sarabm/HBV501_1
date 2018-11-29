@@ -4,15 +4,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/navBar.css"/>"/>
 
-<div>
+<div class="navbar-container">
+    <ul class="navbar">
+        <div class="navbar--item navbar__left">
+            <li >
+                <a href="/">Lil Bill</a>
+            </li>
+        </div>
+        <div class="navbar--item navbar__right">
+            <li>
+                <a href="/transaction">New Transaction</a>
+            </li>
+            <li>
+                <a href="/accounts">Accounts</a>
+            </li>
+            <li class="button">
+                <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+                <form id="logoutForm" method="POST" action="/logout"/>
+            </li>
 
-    <a href="/">Home</a> |
-    <a href="/transaction/all">All transactions</a> |
-    <a href="/transaction">New transaction</a> |
-    <a href="/account/all">My accounts</a> |
-    <a onclick="document.forms['logoutForm'].submit()">Logout</a> |
-    <form id="logoutForm" method="POST" action="/logout"/>
-
-
+        </div>
+    </ul>
 </div>

@@ -8,8 +8,10 @@
 
 <html lang="en">
 
+
 <head>
     <title>Lil Bill</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/transaction/transactionView.css"/>"/>
 </head>
 <body>
 

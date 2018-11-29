@@ -10,33 +10,34 @@
 
 <head>
     <title>Lil Bill</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/transaction/transactionList.css"/>"/>
 </head>
 <body>
+<div class="transaction-list-container">
+
+    <div class="transaction-list-inner">
 
 <h1>All Transactions </h1>
 
-<h3> From ${userName}'s account: </h3>
-<p> Email : ${currUser.email} </p>
-
-<br>
-<p>___________________________________________</p>
+<div class="transaction-list">
 
 <c:forEach var="transaction" items="${transactions}">
-    <div>
+    <div class="transaction-list-item">
         <a href="/transaction/${transaction.id}">
             <div>
-                <h3>Amount : ${transaction.amount} </h3>
-                <h3>Description : ${transaction.descr} </h3>
+                <h3>Amount: ${transaction.amount} </h3>
+                <h3>Description: ${transaction.descr} </h3>
             </div>
         </a>
-        <p>___________________________________________</p>
     </div>
 
 </c:forEach>
+    </div>
 
 
 
-<a href="/../..">Back to home page</a>
+    </div>
+</div>
 </body>
 
 

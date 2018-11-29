@@ -8,23 +8,44 @@
 
 
 <html lang="en">
-
-
     <head>
         <title>Lil Bill</title>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/index.css"/>"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/Index.css"/>"/>
     </head>
     <body>
 
-    <h1>Lil Bill</h1>
-    <p>Hi there!</p>
-    <p>Welcome to Lil Bill, your go-to transaction management service. Here, the idea is that you can keep track of how much you owe your friends and how much they owe you.</p>
-    <p>So convenient!</p>
-    <p>But please bear with us as functionality is not completely here yet. Happy logging :)</p>
+    <div class="transaction-list-container">
 
-    <a href="/transaction">Click here to create a new transaction</a>
-    <br>
-    <a href="/transaction/all">Click here to view all transactions</a>
+        <div class="transaction-list-inner">
+
+            <h1>Hello username! </h1>
+
+            <h3> Recent transactions</h3>
+            <div class="transaction-list">
+                <div class="transaction-list-item">
+                    <a href="/transaction/${transaction.id}">
+                        <div>
+                            <h3>Amount: {transaction.amount} </h3>
+                            <h3>${transaction.descr} </h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="transaction-list-item">
+                    <a href="/transaction/${transaction.id}">
+                        <div>
+                            <h3>Amount: {transaction.amount} </h3>
+                            <h3>{transaction.descr} </h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="all-trans-button-container">
+                <div class="all-trans-button">
+                    <a href="/transaction/all">All transactions</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     </body>
     <footer></footer>

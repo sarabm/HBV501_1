@@ -17,7 +17,7 @@ body {
     flex-direction: column;
 }
 
-.transaction-list-inner h1 {
+.new-transaction h1 {
     text-align: center;
 }
 
@@ -49,27 +49,5 @@ body {
 
 .transaction-list-item:nth-child(odd) a {
     color: #f6f8fa;
-    text-decoration: none;
-}
-
-.all-trans-button-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.all-trans-button {
-    padding: 10px 30px;
-    background-color: #4287d5;
-    color: #eee;
-    border: 3px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    font-size: 16px;
-    text-align: center;
-    width: 120px;
-}
-
-.all-trans-button a {
-    color: #eee;
     text-decoration: none;
 }

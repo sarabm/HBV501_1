@@ -11,10 +11,12 @@
 
 <head>
     <title>Lil Bill</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/transactionNew.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/transaction/transactionNew.css"/>"/>
 </head>
 <body>
 
+<div class="new-transaction-container">
+    <div class=new-transaction>
 <h1>Create a new transaction</h1>
 
 <%--Note that the `commandName` given here HAS TO MATCH the name of the attribute--%>
@@ -22,20 +24,13 @@
 <%--See PostitNoteController, method postitNoteViewGet(), and find where this attribute is added to the model.--%>
 <sf:form method="POST" modelAttribute="transaction" action="/transaction">
 
-    <table>
-        <tr>
-            <td>Amount:</td>
-                <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-            <td><sf:input path="amount" type="number" placeholder="Enter amount"/></td>
-        </tr>
-        <tr>
-            <td>Description:</td>
-                <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-            <td><sf:textarea path="descr" type="text" placeholder="Write a description of the transaction"/></td>
-        </tr>
-        <tr>
-            <td>Friends:</td>
-            <td>
+        <div class="form-group ">
+            <sf:input class="form-input"  path="amount" type="number" placeholder="Enter amount"/>
+            <sf:textarea class="form-input" path="descr" type="text" placeholder="Write a description of the transaction"/>
+            <table>
+                <tr>
+            <td>Split between</td>
+            <td class="friendlist">
             <sf:checkboxes items = "${splitList}" path = "splitInfo" />
             </td>
 
@@ -54,14 +49,21 @@
         </tr>
     </table>
 
-    <input type="submit" VALUE="Save" onclick="form.action='transaction';"/>
-
-
+    <input class="button" type="submit" VALUE="Create Transaction" onclick="form.action='transaction';"/>
+        </div>
 
 </sf:form>
 
-<a href="/../..">Back to home page</a>
+    </div>
+    <div class="find-friends">
+        <h1>Find new friends</h1>
+        <form id="findFriends" action="new" method="POST">
+            <input class="form-input" id="friend-username" name="friend-username" placeholder="Search by username" type="text" value=""/>
 
+            <input class="button" type="submit" VALUE="Add"/>
+        </form>
+    </div>
+</div>
 </body>
 
 </html>
