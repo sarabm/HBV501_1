@@ -6,10 +6,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import project.persistence.entities.Account;
 import project.persistence.entities.Transaction;
 import project.persistence.entities.User;
+import project.service.AccountManagementService;
 import project.service.TransactionManagementService;
 import project.service.UserManagementService;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +27,7 @@ public class TransactionController {
     // Instance Variables
     private TransactionManagementService transactionManagementService;
     private UserManagementService userManagementService;
+    private AccountManagementService accountManagementService;
     private User currUser;
 
     // Getting current user  ---
@@ -33,9 +38,12 @@ public class TransactionController {
 
     // Dependency Injection
     @Autowired
-    public TransactionController(TransactionManagementService transactionManagementService, UserManagementService userManagementService) {
+    public TransactionController(TransactionManagementService transactionManagementService,
+                                 UserManagementService userManagementService,
+                                 AccountManagementService accountManagementService) {
         this.transactionManagementService = transactionManagementService;
         this.userManagementService = userManagementService;
+        this.accountManagementService = accountManagementService;
         //this.securityContextHolder = securityContextHolder;
         //this.userDetails = (UserDetails) securityContextHolder.getContext().getAuthentication().getPrincipal();
     }
@@ -51,7 +59,18 @@ public class TransactionController {
         model.addAttribute("currUser", currUser);
         model.addAttribute("transactions", transactionManagementService.findAll());
         return "transaction/transactionList";
+    }
 
+    @ModelAttribute("splitList")
+    public List<String> getSplitList() {
+        List<String> splitList = new ArrayList<>();
+        splitList.add("Me");
+        this.currUser = getUser();
+        List<User> friendlist = currUser.getFriendlist();
+        for (User friend : friendlist) {
+            splitList.add(friend.getUsername());
+        }
+        return splitList;
     }
 
     // Method that returns the correct view for the URL /transaction/new
@@ -59,11 +78,15 @@ public class TransactionController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String transactionNewGet(Model model /*ModelMap map*/){
         this.currUser = getUser();
-        List<User> friendlist = currUser.getFriendlist(); // Obtain all products.
+
+        //List<User> friendlist = currUser.getFriendlist(); // Obtain all products.
 
         // Add new transaction and friendlist to the model
-        model.addAttribute("transaction", new Transaction());
-        model.addAttribute("friendlist", friendlist);
+        Transaction transaction = new Transaction();
+        transaction.setSplitInfo(getSplitList());
+
+        model.addAttribute("transaction", transaction);
+        // model.addAttribute("friendlist", friendlist);
 
         // Return the view
         return "transaction/transactionNew";
@@ -76,13 +99,35 @@ public class TransactionController {
     public String transactionNewPost(@ModelAttribute("transaction") Transaction transaction,
                                      Model model){
 
+        List <String> splitNames = transaction.getSplitInfo();
+        Double splitAmmount = transaction.getAmount() / splitNames.size();
+        Long currSplitId = null;
+
+        for (String name: splitNames) {
+            if(name.equals("Me"));
+            else {
+                Account currAccount;
+                //accountManagementService.findByUsername // add account
+                // get is User1
+                Transaction currTransaction = new Transaction();
+                transaction.setAmount(splitAmmount);
+                transaction.setDescr(transaction.getDescr());
+
+            }
+
+
+        }
+
+
+
+        //String[] selections = request.getParameterValues("selection");
+
         //bæta við það að account ID fylgi með
         // Save transaction from the form
         transactionManagementService.save(transaction);
 
         //System.out.println(transaction.getDescr());
         Long id = transaction.getId();
-
         // Return the view --- {" + id + "}
         return "redirect:/transaction/"+id;
         //return "";

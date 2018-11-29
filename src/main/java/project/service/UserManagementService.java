@@ -40,7 +40,6 @@ public interface UserManagementService {
      */
      List<User> getFriends(User user);
 
-
     /**
      * Checks if username and pw is correct
      * @param username
