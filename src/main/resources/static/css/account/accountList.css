@@ -1,0 +1,72 @@
+body {
+    background-color: #f6f8fa;
+    color: #4287d5;
+    margin: 0;
+    margin-top: 70px;
+    font-family: sans-serif;
+}
+
+.account-list-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.account-list-inner {
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.account-list-inner h1 {
+    text-align: center;
+}
+
+.account-list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid #becfe0;
+    border-radius: 3px;
+}
+
+.account-list-item {
+    padding: 10px 40px;
+}
+
+.account-list-item:nth-child(even) {
+    background-color: #f6f8fa;
+}
+
+.account-list-item:nth-child(even) a {
+    color: #4287d5;
+    text-decoration: none;
+}
+
+.account-list-item:nth-child(odd) {
+    color: #f6f8fa;
+    background-color: #75a7e0;
+}
+
+.account-list-item:nth-child(odd) a {
+    color: #f6f8fa;
+    text-decoration: none;
+}
+
+.find-friends .form-input {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #becfe0;
+    border-radius: 5px;
+}
+
+.find-friends .button {
+    padding: 10px 10px;
+    background-color: #4287d5;
+    color: #eee;
+    border: 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 16px;
+}

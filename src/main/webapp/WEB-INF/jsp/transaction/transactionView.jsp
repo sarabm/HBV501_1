@@ -14,13 +14,18 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/transaction/transactionView.css"/>"/>
 </head>
 <body>
+<div class="view-transaction-container">
+    <div class=view-transaction>
 
-<h1>Transaction submitted</h1>
+<h1>Transaction Info</h1>
 <h2>Amount : ${transaction.amount} </h2>
 <h2>Description : ${transaction.descr} </h2>
-
-
-<a href="/../..">Back to home page</a>
+        <h2>Date: ${transaction.date} </h2>
+        <div class="account-button-container">
+            <div class="account-button">
+                <a href="/account/${transaction.getAccount().getId()}" >View Account</a>
+            </div>
+        </div>
 </body>
 
 

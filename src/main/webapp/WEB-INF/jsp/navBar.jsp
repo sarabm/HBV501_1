@@ -18,7 +18,7 @@
                 <a href="/transaction">New Transaction</a>
             </li>
             <li>
-                <a href="/accounts">Accounts</a>
+                <a href="/account/all">Accounts</a>
             </li>
             <li class="button">
                 <a onclick="document.forms['logoutForm'].submit()">Logout</a>
