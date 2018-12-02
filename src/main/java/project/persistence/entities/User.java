@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The class for the User Note itself.
+ * The class for the User
  * The system generates a table schema based on this class for this entity.
  * Be sure to annotate any entities you have with the @Entity annotation.
  */
@@ -23,28 +23,15 @@ public class User {
     private String email;
     private String password;
     private String role;
-    /*@ManyToMany
-    protected List<User> friendlist = null;
-
-
-    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}
-    )
-    @JoinTable(
-            name="USER_FRIEND",
-            joinColumns=@JoinColumn(name="USER_ID"),
-            inverseJoinColumns=@JoinColumn(name="FRIEND_ID")
-    )*/
-    public List getFriendlist() {
-        return friendlist;
-    }
 
     @ManyToMany
     private List<User> friendlist = null;
 
+    public List getFriendlist() {
 
+        return friendlist;
+    }
 
-    // Notice the empty constructor, because we need to be able to create an empty User to add
-    // to our model so we can use it with our form
     public User() {
     }
 

@@ -26,62 +26,41 @@ public class UserManagementServiceImplementation implements UserManagementServic
 
     @Override
     public User save(User user) {
+
+        //Encrypt the password
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        //No admin functionality so all users get the user role
         user.setRole("ROLE_USER");
+        //Initialize the friendlist
         List<User> friendlist = new ArrayList<>();
         user.setFriendlist(friendlist);
+
         return repository.save(user);
     }
 
     @Override
     public void delete(User user) {
+
         repository.delete(user);
     }
 
 
     @Override
     public User findByUsername(String username) {
-        /*User isak = new User();
-        isak.setUserName("Sakkattack");
-        isak.setEmail("mymail@mail.com");
-        isak.setFirstName("Ísak");
-        isak.setLastName("Kolbeins");
-        return isak ; //*/
+
         return repository.findByUsername(username);
     }
 
     @Override
     public User findByUserId(Long userId) {
+
         return repository.findByUserId(userId);
     }
 
-   /* @Override
-    public Boolean validateUser(String username, String password) {
-        //if false return errormessage
-        return repository.validateUser(username, password);
-    }*/
-
-    @Override
-    public Boolean isLogedIn(Boolean loggedIn){
-        //í módelinu?
-        //if false
-        // validateUse
-        return true;
-    }
-
-    @Override
-    public List<User> getFriends(User user){
-        /*
-        for (Object id: user.getFriendlist()) {
-            system.id.toString()
-        }*/
-
-        // Returns lit of user friens
-        return null;
-    }
 
     @Override
     public void addFriend(User user, User friend) {
+
         List<User> userFriends = user.getFriendlist();
         if (userFriends == null){
             userFriends = new ArrayList<User>();
@@ -95,6 +74,7 @@ public class UserManagementServiceImplementation implements UserManagementServic
         }
         friendFriends.add(user);
         friend.setFriendlist(friendFriends);
+
         repository.save(user);
         repository.save(friend);
     }

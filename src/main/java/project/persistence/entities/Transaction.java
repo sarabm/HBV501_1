@@ -3,24 +3,17 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-/**
- * The class for the Transaction Note itself.
- * The system generates a table schema based on this class for this entity.
- * Be sure to annotate any entities you have with the @Entity annotation.
- */
+
 @Entity
-@Table(name = "transaction") // If you want to specify a table name, you can do so here
+@Table(name = "transaction")
 public class Transaction {
-    // Declare that this attribute is the id and autogenerate
+
+    // Declare that this attribute is the id and auto generate
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "transactionId", updatable = false, nullable = false)
     private Long id;
 
-    /*@Id
-    @Column(name = "splitId")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
-    //Composite-id class must implement Serializable
     private Long splitId;
 
     private Boolean confirmed;
@@ -36,6 +29,7 @@ public class Transaction {
     @Embedded
     private List<String> splitInfo;
 
+    //Auto genarate the date of creation
     @Temporal(TemporalType.DATE)
     private Date date = new Date();
 
@@ -56,7 +50,7 @@ public class Transaction {
     }
 
     /**
-     * Getters n settesr
+     * Getters n setters
      * @return
      */
     public Long getId() {

@@ -4,6 +4,9 @@ import project.persistence.entities.Transaction;
 
 import java.util.List;
 
+/**
+ * Transaction Management Service
+ */
 public interface TransactionManagementService {
 
     /**
@@ -19,13 +22,13 @@ public interface TransactionManagementService {
      */
     void delete(Transaction Transaction);
 
+    /**
+     * Finds transaction by splitId
+     * @param splitId
+     * @return
+     */
     List<Transaction> findBySplitId(Long splitId);
 
-    /**
-     * Get all {@link Transaction}s
-     * @return A list of {@link Transaction}s
-     */
-    List<Transaction> findAll();
 
     /**
      * Find one  {@link Transaction}
@@ -34,10 +37,13 @@ public interface TransactionManagementService {
      */
     Transaction findOne(Long transactionId);
 
+
     /**
-     * Find transaction by User Id {@link Transaction}
-     * @param userId
+     * Finds all transactions in reverse order by date
+     * @param user
      * @return
      */
-    /*List<Transaction> findByUserId(Long userId);*/
+    List<Transaction> findAllReverseOrder(String user);
+
+
 }

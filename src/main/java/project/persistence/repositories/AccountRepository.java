@@ -29,9 +29,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query(value = "SELECT p FROM Account p WHERE ((user1 LIKE ?1) AND (user2 LIKE  ?2)) OR ((user1 LIKE ?2) AND  (user2 LIKE ?1))")
     Account findAccountByUsers(String user1, String user2);
 
-
-
-
-    //Account findByUser(User user);
+    @Query(value = "SELECT p FROM Account p WHERE (user1 LIKE ?1) OR (user2 LIKE ?1)")
+    List<Account> findByUser1IsWithinOrUser2IsWithin(String user);
 
 }
