@@ -19,11 +19,10 @@ import java.util.List;
 
 
 /**
- * Small controller just to show that you can have multiple controllers
- * in your project
+ * Accounts controller
  */
 @Controller
-@RequestMapping("/account") // Notice here that the Request Mapping is set at the Class level
+@RequestMapping("/account")
 public class AccountsController {
 
     //Instance Variables
@@ -33,11 +32,12 @@ public class AccountsController {
 
     private User currUser;
 
-    // Getting current user  ---
+    // Getting current user
     private User getUser() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userManagementService.findByUsername(userDetails.getUsername());
     }
+
     //Dependency Injection
     @Autowired
     public AccountsController(UserManagementService userManagementService,
@@ -48,16 +48,27 @@ public class AccountsController {
         this.transactionManagementService = transactionManagementService;
     }
 
+    /**
+     * Get methood for showing all accounts
+     * @param model
+     * @return a list
+     */
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String allAccounts(Model model) {
         this.currUser = getUser();
 
-        // model.addAttribute("friendUserName", "");
         model.addAttribute("currUser", currUser);
         model.addAttribute("accounts", accountManagementService.findByUsername(currUser.getUsername()));
+
         return "/account/accountList";
     }
 
+    /**
+     * Posts a list of all the users accounts
+     * @param model
+     * @param friendUserName
+     * @return
+     */
     @RequestMapping(value = "/all", method = RequestMethod.POST)
     public String allAccountsAddFriend(Model model, @RequestParam String friendUserName) {
         this.currUser = getUser();
@@ -88,16 +99,23 @@ public class AccountsController {
         return "/account/accountList";
     }
 
+
+    /**
+     * Gets the view for the selected accound
+     * @param accountID
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/{accountID}", method = RequestMethod.GET)
     public String transactionView(@PathVariable String accountID, Model model){
         this.currUser = getUser();
         Long id = Long.parseLong(accountID);
+
         Account account = accountManagementService.findOne(id);
         Boolean isUser1 = currUser.getUsername().equals(account.getUser1());
         List <Transaction> transactions = account.getTransactionList();
         transactions.sort((t1, t2) -> t1.getDate().compareTo(t2.getDate()));
         Collections.reverse(transactions);
-
 
         model.addAttribute("account", account);
         model.addAttribute("transactions", transactions);
@@ -105,6 +123,7 @@ public class AccountsController {
 
         return "/account/accountView";
     }
+
 
     @RequestMapping(value = "/{accountID}/payup", method = RequestMethod.GET)
     public String getPayUp(@PathVariable String accountID, Model model){

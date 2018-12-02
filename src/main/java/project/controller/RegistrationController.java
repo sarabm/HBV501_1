@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Small controller just to show that you can have multiple controllers
- * in your project
+ * Registration controller
  */
 @Controller
 public class RegistrationController {
@@ -32,19 +31,34 @@ public class RegistrationController {
         this.userManagementService = userManagementService;
     }
 
+    /**
+     * Method that returns the correct view for the URL /registration
+     * This handles the GET request for this URL
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String newRegistration(Model model){
 
+        //Add a empty user entity to the model
         model.addAttribute("newUser", new User());
 
+        //Return the view
         return "registration";
     }
 
+    /**
+     * Method that returns the correct view for the URL /registration
+     * This handles the POST request for this URL
+     * @param newUser
+     * @param model
+     * @param redirectAttrs
+     * @return
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String saveRegistration(@ModelAttribute("newUser") User newUser , Model model, RedirectAttributes redirectAttrs){
 
         List<String> errors = new ArrayList();
-
 
         User usernameTaken = userManagementService.findByUsername(newUser.getUsername());
 

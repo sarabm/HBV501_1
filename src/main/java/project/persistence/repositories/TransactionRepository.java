@@ -8,31 +8,41 @@ import project.persistence.entities.Transaction;
 import java.util.List;
 
 /**
- * By extending the {@link JpaRepository} we have access to powerful methods.
- * For detailed information, see:
- * http://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html
- * http://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html
- *
+ * Repository for transactions
  */
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-    //insert
+    /**
+     * Inserts a transaction into the DB
+     * @param Transaction
+     * @return
+     */
     Transaction save(Transaction Transaction);
 
-    //remove
+    /**
+     * Removes a transaction in the DB
+     * @param Transaction
+     */
     void delete(Transaction Transaction);
 
+    /**
+     * Finds all transactions in DB
+     * @return
+     */
     List<Transaction> findAll();
 
-    //List<Transaction> findAllTransactions(Account account);
-
-
+    /**
+     * Finds one transaction with ID
+     * @param id
+     * @return
+     */
     @Query(value = "SELECT p FROM Transaction p WHERE p.id = ?1")
     Transaction findOne(Long id);
 
-    @Query(value = "SELECT p FROM Transaction p WHERE p.id = ?1")
-    Transaction findByUserId(Long id);
-
-
+    /**
+     * Finds all transactions with the same splitId
+     * @param splitId
+     * @return
+     */
     List<Transaction> findBySplitId(Long splitId);
 }

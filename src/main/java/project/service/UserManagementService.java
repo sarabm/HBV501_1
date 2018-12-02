@@ -33,12 +33,6 @@ public interface UserManagementService {
      */
      User findByUserId(Long userid);
 
-    /**
-     * Returns list of frend users
-     * @param user
-     * @return
-     */
-     List<User> getFriends(User user);
 
     /**
      * Checks if username and pw is correct
@@ -50,20 +44,11 @@ public interface UserManagementService {
     */
 
     /**
-     * Returns true if user is logged in
-     * @param loggedIn
-     * @return
-     */
-     Boolean isLogedIn(Boolean loggedIn);
-
-
-    /**
      * Appends each other to each others friendlist
      * @param user
      * @param friend
      *
      */
-
      void addFriend(User user, User friend);
 
 

@@ -2,12 +2,12 @@ package project.persistence.entities;
 import javax.persistence.*;
 import java.util.List;
 /**
- * The class for the Account itself.
+ * The class for the Account
  * The system generates a table schema based on this class for this entity.
  * Be sure to annotate any entities you have with the @Entity annotation.
  */
 @Entity
-@Table(name = "account") // If you want to specify a table name, you can do so here
+@Table(name = "account")
 public class Account  {
     // Declare that this attribute is the id
     @Id
@@ -17,13 +17,12 @@ public class Account  {
 
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     private List<Transaction> transactionList;
-    //@JoinColumn(name = "transactionId")
 
     private String user1;
     private String user2;
     private Double netBalance;
 
-
+    //Empty constructor
     public Account() {
     }
 
@@ -45,8 +44,6 @@ public class Account  {
         return user2;
     }
 
-
-
     public List<Transaction> getTransactionList() {
         return transactionList;
     }
@@ -54,7 +51,6 @@ public class Account  {
     public void setTransactionList(List<Transaction> transactionList) {
         this.transactionList = transactionList;
     }
-
 
     public Double getNetBalance() {
         return netBalance;
