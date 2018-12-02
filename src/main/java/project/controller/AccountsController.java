@@ -79,7 +79,7 @@ public class AccountsController {
                     model.addAttribute("msg", friend.getUsername() + " is already your friend");
                 }
             } else {
-                model.addAttribute("msg", "No user found with username :" + friendUserName);
+                model.addAttribute("msg", "No user found with username: " + friendUserName);
             }
         }
 
@@ -115,7 +115,7 @@ public class AccountsController {
 
         String friendName = account.getUser2();
         int prefix = -1;
-        if(isUser1) {
+        if(!isUser1) {
             friendName = account.getUser1();
             prefix = 1;
         }

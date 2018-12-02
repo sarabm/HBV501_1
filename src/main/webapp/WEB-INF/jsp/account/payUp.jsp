@@ -10,7 +10,7 @@
 
     <head>
         <title>Lil Bill</title>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/transaction/transactionNew.css"/>"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/account/payUp.css"/>"/>
     </head>
     <body>
     <div class="transaction-list-container">
@@ -24,12 +24,15 @@
                     <%--that is added to the model that is passed to the view.--%>
                     <%--See PostitNoteController, method postitNoteViewGet(), and find where this attribute is added to the model.--%>
                     <sf:form method="POST" modelAttribute="transaction" action="/payup">
-                        <h2>Payment to ${friend}</h2>
-                        <div class="form-group ">
+                        <div class="pay-up-form-group ">
+                            <h2>Payment to ${friend}</h2>
+                        <div class="form-amount">
+                            ${-transaction.amount}
+                        </div>
+                            <div>
+                                <input class="button" type="submit" VALUE="Pay Up" onclick="form.action='payup';"/>
+                            </div>
 
-                        <sf:input class="form-input"  path="amount" type="number" value="${-transaction.amount}"/>
-
-                        <input class="button" type="submit" VALUE="Pay Up" onclick="form.action='payup';"/>
                         </div>
                     </sf:form>
                 </div>

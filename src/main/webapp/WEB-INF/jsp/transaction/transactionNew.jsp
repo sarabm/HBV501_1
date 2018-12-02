@@ -22,10 +22,13 @@
 <%--Note that the `commandName` given here HAS TO MATCH the name of the attribute--%>
 <%--that is added to the model that is passed to the view.--%>
 <%--See PostitNoteController, method postitNoteViewGet(), and find where this attribute is added to the model.--%>
+        <c:if test="${not empty msg}">
+            <p>${msg}</p>
+        </c:if>
 <sf:form method="POST" modelAttribute="transaction" action="/transaction">
 
         <div class="form-group ">
-            <sf:input class="form-input"  path="amount" type="number" placeholder="Enter amount"/>
+            <sf:input class="form-input"  path="amount" type="number" placeholder="Enter amount" required=""/>
             <sf:textarea class="form-input" path="descr" type="text" placeholder="Write a description of the transaction"/>
             <table>
                 <tr>
@@ -56,12 +59,8 @@
 
     </div>
     <div class="find-friends">
-        <h1>Find new friends</h1>
-        <form id="findFriends" action="new" method="POST">
-            <input class="form-input" id="friend-username" name="friend-username" placeholder="Search by username" type="text" value=""/>
-
-            <input class="button" type="submit" VALUE="Add"/>
-        </form>
+        <h2>Can't see your friends?</h2>
+        <a class="button" href="/account/all">Add new friends</a>
     </div>
 </div>
 </body>

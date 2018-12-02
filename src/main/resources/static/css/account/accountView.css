@@ -11,6 +11,8 @@ body {
     justify-content: space-evenly;
 }
 
+
+
 .transaction-list-inner {
     padding: 0px 20px;
     display: flex;
@@ -50,6 +52,14 @@ body {
 .transaction-list-item:nth-child(odd) a {
     color: #f6f8fa;
     text-decoration: none;
+}
+
+.transaction-list-inner h2 {
+    text-align: center;
+}
+
+.balance-info h2 {
+    text-align: center;
 }
 
 .balance-info .form-input {

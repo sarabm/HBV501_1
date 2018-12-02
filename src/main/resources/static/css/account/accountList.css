@@ -52,6 +52,10 @@ body {
     text-decoration: none;
 }
 
+.find-friends h2 {
+    text-align: center;
+}
+
 .find-friends .form-input {
     position: relative;
     font-size: 16px;

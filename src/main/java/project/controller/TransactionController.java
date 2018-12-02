@@ -105,6 +105,12 @@ public class TransactionController {
         this.currUser = getUser();
 
         List <String> splitNames = transaction.getSplitInfo();
+        if((splitNames == null || splitNames.size()<=0) || (splitNames.size() == 1 && splitNames.get(0).equals("Me"))){
+            model.addAttribute("msg", "Check your inputs");
+            return "transaction/transactionNew";
+        }
+
+
         List <String> splitInfo = new ArrayList<String>(splitNames);
         Double splitAmmount = (int)((transaction.getAmount() / splitNames.size())*100)/100.0;
         Long currSplitId = null;

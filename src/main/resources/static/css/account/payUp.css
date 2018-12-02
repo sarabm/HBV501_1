@@ -1,0 +1,49 @@
+.new-transaction-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.new-transaction {
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-transaction h1 {
+    text-align: center;
+}
+
+div label input {
+    margin-right: 100px;
+}
+body {
+    background-color: #f6f8fa;
+    color: #4287d5;
+    margin: 0;
+    margin-top: 70px;
+    font-family: sans-serif;
+}
+
+.pay-up-form-group {
+    display: block;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+.pay-up-form-group .form-amount {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+
+}
+
+.pay-up-form-group .button {
+    padding: 10px 30px;
+    background-color: #4287d5;
+    color: #eee;
+    border: 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 16px;
+}
