@@ -28,14 +28,29 @@
             <div>
                 <c:set var="curr" value="${currUser.username}"/>
                 <c:set var="u1" value="${account.user1}"/>
+
                 <c:choose>
                     <c:when test="${curr == u1}" >
                         <h3>${account.user2}</h3>
-                        <h3>Balance : ${account.netBalance}  </h3>
+                        <c:choose>
+                            <c:when test="${Math.abs(account.netBalance) == 0}" >
+                                <h3>${0.00}</h3>
+                            </c:when>
+                            <c:otherwise>
+                                <h3>Balance : ${account.netBalance}  </h3>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
                     <c:otherwise>
                         <h3>${account.user1}</h3>
-                        <h3>Balance : ${-1*account.netBalance}  </h3>
+                        <c:choose>
+                            <c:when test="${Math.abs(account.netBalance) == 0}" >
+                                <h3>${0.00}</h3>
+                            </c:when>
+                            <c:otherwise>
+                                <h3>Balance : ${-1*account.netBalance}  </h3>
+                            </c:otherwise>
+                        </c:choose>
                     </c:otherwise>
                 </c:choose>
             </div>

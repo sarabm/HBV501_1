@@ -45,12 +45,19 @@
         </div>
         <div class="balance-info">
             <h2>Balance</h2>
-            <h2>${sign * account.netBalance} </h2>
-            <c:if test="${sign * account.netBalance < 0}">
-            <div class="button">
-                <a href="/account/${account.id}/payup">Pay Up</a>
-            </div>
-            </c:if>
+            <c:choose>
+                <c:when test="${Math.abs(account.netBalance) == 0}" >
+                    <h2>${0.00}</h2>
+                </c:when>
+                <c:otherwise>
+                    <h2>${sign * account.netBalance} </h2>
+                    <c:if test="${sign * account.netBalance < 0.0}">
+                        <div class="button">
+                            <a href="/account/${account.id}/payup">Pay Up</a>
+                        </div>
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
     </body>
